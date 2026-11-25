@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="light">
+<title>ウイスキー蒸溜所｜CASK / BARREL（ベータ版）</title>
+<meta name="description" content="1棟・1区画から、区画ごとの分担まで。樽1本ごとの置き場所と記録を、貯蔵庫の端末と事務所の画面で1つの台帳に。ウイスキー蒸溜所のための樽の管理サービス（ベータ版）。">
+<link rel="canonical" href="https://particle-design.co.jp/caskbarrel/distillery/">
+<link rel="alternate" hreflang="ja" href="https://particle-design.co.jp/caskbarrel/distillery/">
+<link rel="alternate" hreflang="en" href="https://particle-design.co.jp/caskbarrel/en/distillery/">
+<link rel="alternate" hreflang="x-default" href="https://particle-design.co.jp/caskbarrel/en/distillery/">
+<script src="../../lang.js?v=1e536e42"></script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CASK / BARREL">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="ウイスキー蒸溜所｜CASK / BARREL（ベータ版）">
+<meta property="og:description" content="1棟・1区画から、区画ごとの分担まで。樽1本ごとの置き場所と記録を、貯蔵庫の端末と事務所の画面で1つの台帳に。ウイスキー蒸溜所のための樽の管理サービス（ベータ版）。">
+<meta property="og:url" content="https://particle-design.co.jp/caskbarrel/distillery/">
+<meta property="og:image" content="https://particle-design.co.jp/caskbarrel/assets/og/og-ja.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="CASK / BARREL。積み重ねる時間と記録は、未来の価値をつくる。管理ポータルのホームの画面（架空のデータ）">
+<link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css?v=565ba1bf">
+<link rel="stylesheet" href="../assets/fonts/plex-sans-jp.css"><!-- 書体: IBM Plex Sans JP 3.0.0 の分割 woff2（400・600）。許諾は assets/fonts/OFL.txt -->
+<script src="../assets/site.js?v=14826bd4"></script>
+</head>
+<body>
+
+<svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="cbMarkBg" cx="80" cy="18" r="120" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2A4468"/><stop offset=".5" stop-color="#15263D"/><stop offset="1" stop-color="#0B1626"/></radialGradient>
+    <linearGradient id="cbMarkCask" x1="36" y1="33" x2="72" y2="75" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#E8BC76"/><stop offset=".55" stop-color="#C88A3A"/><stop offset="1" stop-color="#9C6620"/></linearGradient>
+  </defs>
+  <symbol id="cb-mark" viewBox="20 14 74 74">
+    <rect x="20" y="14" width="74" height="74" rx="17" fill="url(#cbMarkBg)"/>
+    <path d="M41,33 Q54,29.5 67,33 Q74.5,54 67,75 Q54,78.5 41,75 Q33.5,54 41,33 Z" fill="url(#cbMarkCask)"/>
+    <path d="M49,31.6 Q46.6,54 49,76.4 M59,31.6 Q61.4,54 59,76.4" fill="none" stroke="#8A5A1E" stroke-opacity=".4" stroke-width="1.1" stroke-linecap="round"/>
+    <path d="M37.8,41 Q54,44.6 70.2,41 M37.8,67 Q54,70.6 70.2,67" fill="none" stroke="#15263D" stroke-width="2.8" stroke-linecap="round"/>
+    <path d="M74,27 Q81,31 82.5,39" fill="none" stroke="#F4E3C3" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M77.5,21.5 Q87.5,27 89.5,38.5" fill="none" stroke="#F4E3C3" stroke-opacity=".6" stroke-width="2.2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><path d="M12,3.75 A8.25,8.25 0 1 1 11.99,3.75 Z M12,10.9 V16.4 M12,7.7 L12,7.75"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5,12 H18.5 M13.5,7 L18.5,12 L13.5,17"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12,5 V18.5 M7,13.5 L12,18.5 L17,13.5"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><path d="M6.75,10.75 H17.25 Q18.25,10.75 18.25,11.75 V19 Q18.25,20 17.25,20 H6.75 Q5.75,20 5.75,19 V11.75 Q5.75,10.75 6.75,10.75 Z M8.75,10.75 V8 A3.25,3.25 0 0 1 15.25,8 V10.75 M12,14.4 V16.4"/></symbol>
+  <symbol id="i-device" viewBox="0 0 24 24"><path d="M8,3.75 H16 Q17.25,3.75 17.25,5 V19 Q17.25,20.25 16,20.25 H8 Q6.75,20.25 6.75,19 V5 Q6.75,3.75 8,3.75 Z M10.5,17.25 H13.5"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><path d="M4.75,20.25 V8.5 L9.5,5.75 V20.25 M9.5,20.25 V3.75 L19.25,7 V20.25 M3.5,20.25 H20.5 M12.25,9.5 H16.5 M12.25,12.75 H16.5 M12.25,16 H16.5"/></symbol>
+  <symbol id="i-history" viewBox="0 0 24 24"><path d="M4.75,12 A7.25,7.25 0 1 0 6.9,6.85 M4.4,4.6 L4.75,8.1 L8.25,7.75 M12,8 V12.3 L14.9,14.2"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4.5,7 H19.5 M4.5,12 H19.5 M4.5,17 H19.5"/></symbol>
+</svg>
+
+
+<a class="skip" href="#main">本文へ移る</a>
+
+<nav class="corp-bar" aria-label="会社のサイト">
+  <div class="shell"><a href="https://particle-design.co.jp/products/"><span aria-hidden="true">←</span> Particle design の Product 一覧</a></div>
+</nav>
+
+<header class="site-header">
+  <div class="shell">
+    <a class="brand" href="../" aria-label="CASK / BARREL トップ">
+      <svg aria-hidden="true"><use href="#cb-mark"/></svg>
+      <span class="wordmark">CASK / BARREL</span>
+    </a>
+    <span class="badge">ベータ版</span>
+    <nav class="nav" aria-label="サイトの中の移動">
+      <a href="../distillery/" aria-current="page">ウイスキー蒸溜所</a>
+      <a href="../winery/">ワイナリー</a>
+      <a href="../lab/">ブレンディング・ラボ</a>
+      <a href="../#faq">よくある質問</a>
+    </nav>
+    <nav class="lang" aria-label="言語"><b lang="ja" aria-current="true">日本語</b><span aria-hidden="true">/</span><a href="../en/distillery/" lang="en" hreflang="en" data-lang="en">English</a></nav>
+    <a class="btn small header-cta" href="https://particle-design.co.jp/contact.html?topic=caskbarrel" data-goal="CTA Hearing Header"><span class="long">ヒアリングを申し込む</span><span class="short">申し込む</span></a>
+    <details class="menu">
+      <summary aria-label="メニュー"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></summary>
+      <div class="menu-panel">
+        <nav class="lang" aria-label="言語（メニュー）"><b lang="ja" aria-current="true">日本語</b><span aria-hidden="true">/</span><a href="../en/distillery/" lang="en" hreflang="en" data-lang="en">English</a></nav>
+        <nav aria-label="サイトの中の移動（メニュー）">
+          <a href="../distillery/" aria-current="page">ウイスキー蒸溜所</a>
+          <a href="../winery/">ワイナリー</a>
+          <a href="../lab/">ブレンディング・ラボ</a>
+          <a href="../early-adopter/">アーリーアダプター募集</a>
+          <a href="../#faq">よくある質問</a>
+        </nav>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero sub on-navy" id="top" aria-labelledby="page-title">
+    <div class="shell sub-grid">
+      <div>
+        <p class="kicker fx">ウイスキー蒸溜所</p>
+        <h1 class="d2" id="page-title"><span class="ib">1棟・1区画から、</span><span class="ib">区画ごとの分担まで。</span></h1>
+        <p class="lead fx w2">樽1本ごとの置き場所と、詰めた日・測った値・移し替えを、貯蔵庫の端末と事務所の画面で1つの台帳にします。いまお使いのしくみを置き換えるものではありません。</p>
+        <div class="actions fx w5">
+          <a class="btn" href="https://particle-design.co.jp/contact.html?topic=caskbarrel" data-goal="CTA Hearing Segment">ヒアリングを申し込む</a>
+        </div>
+      </div>
+      <div class="fx w7">
+        <figure class="shot shot-web"><div class="frame"><picture><source media="(max-width:599px)" srcset="../assets/screens/s06-places-m.webp" width="1200" height="943"><img src="../assets/screens/s06-places-1920.webp" srcset="../assets/screens/s06-places-960.webp 960w, ../assets/screens/s06-places-1920.webp 1920w" sizes="(max-width:899px) 92vw, 620px" width="1920" height="911" alt="置き場所の画面。貯蔵庫の中の棚ごとの樽の数と、そこにある樽の一覧が並んでいる" fetchpriority="high" decoding="async"></picture></div><figcaption data-copy="screen-note">画面はすべて架空のデータです（会社名に「（デモ）」が付きます）。2026年11月時点の画面です。</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="small" aria-labelledby="small-title">
+    <div class="shell">
+      <p class="label">1棟・1区画から</p>
+      <h2 class="d2" id="small-title" data-reveal><span class="ib">棚卸しの日も、</span><span class="ib">樽を探す日も。</span></h2>
+      <p class="lede w1" data-reveal>何年も動かさない樽の置き場所が、担当の人の記憶と表計算の一覧にしかない。そんな貯蔵庫でも、移す・数える・測るといういつもの作業のついでに、台帳を重ねていけます。</p>
+      <article class="scene" data-reveal>
+        <div class="scene-text">
+          <h3>棚の前を歩いて、まとめて数える</h3>
+          <p>RFIDリーダーを持って通路を歩くと、樽に貼ったタグをまとめて読みます。読めた樽の数がその場で増え、読めていない樽だけが一覧に残ります。</p>
+          <p class="note"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg><span data-copy="rfid-note">読み取れる距離や確実さは、タグと貯蔵庫の置き方で変わります。</span></p>
+        </div>
+        <figure class="shot shot-device"><div class="frame"><img src="../assets/screens/s17-stocktake-720.webp" srcset="../assets/screens/s17-stocktake-360.webp 360w, ../assets/screens/s17-stocktake-720.webp 720w" sizes="232px" width="720" height="972" alt="現場アプリの棚卸しの画面。読めた樽の数が、輪の目盛りの中に出ている" loading="lazy" decoding="async"></div><figcaption>読めた樽の数が、その場で増えていきます。</figcaption></figure>
+      </article>
+      <article class="scene" data-reveal>
+        <div class="scene-text">
+          <h3>探したい樽へ、近さを頼りに</h3>
+          <p>番号か一覧で樽を選び、RFIDリーダーを向けて歩きます。近づくほど数字が上がり、音が速くなります。</p>
+        </div>
+        <figure class="shot shot-device near"><div class="frame"><video controls preload="none" playsinline poster="../assets/screens/v1-find-poster.webp" width="720" height="734" aria-label="現場アプリで樽を探す画面の録画。近づくと近さの数字が上がって輪が狭まり、見つかりましたと出る。音はありません"><source src="../assets/screens/v1-find.mp4" type="video/mp4"></video></div><figcaption>近づくほど数字が上がり、音が速くなります。</figcaption></figure>
+      </article>
+      <article class="scene" data-reveal>
+        <div class="scene-text">
+          <h3>測った値は、樽の前で一度だけ</h3>
+          <p>液量や度数は、樽の前で現場アプリから入れます。測り方と日時と一緒に、事務所の画面へ届きます。</p>
+        </div>
+        <figure class="shot shot-device"><div class="frame"><img src="../assets/screens/s20-cask-720.webp" srcset="../assets/screens/s20-cask-360.webp 360w, ../assets/screens/s20-cask-720.webp 720w" sizes="232px" width="720" height="1295" alt="現場アプリの樽の画面。液量とその根拠が出ていて、下に記録するボタンがある" loading="lazy" decoding="async"></div><figcaption>樽のラベルの QR から開いた画面。樽の前で、その場で記録できます。</figcaption></figure>
+      </article>
+      <article class="scene" data-reveal>
+        <div class="scene-text">
+          <h3>担当が替わっても、読み返せる</h3>
+          <p>詰めた日、測った値、移し替え、採取が、樽1本ごとに並びます。</p>
+        </div>
+        <figure class="shot shot-web"><div class="frame"><picture><source media="(max-width:599px)" srcset="../assets/screens/s04-cask-history-m.webp" width="1200" height="979"><img src="../assets/screens/s04-cask-history-1920.webp" srcset="../assets/screens/s04-cask-history-960.webp 960w, ../assets/screens/s04-cask-history-1920.webp 1920w" sizes="(max-width:899px) 92vw, 620px" width="1920" height="1224" alt="樽の履歴の画面。採取、測定、詰めの記録が、新しい順に並んでいる" loading="lazy" decoding="async"></picture></div><figcaption>詰めた日、測った値、移し替え、採取が、樽1本ごとに並びます。</figcaption></figure>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec ground" id="share" aria-labelledby="share-title">
+    <div class="shell">
+      <p class="label">区画ごとに分担</p>
+      <h2 class="d2" id="share-title" data-reveal><span class="ib">棚卸しを区画に分けて、</span><span class="ib">差異には理由を。</span></h2>
+      <p class="lede w1" data-reveal>貯蔵庫や区画が増えても、同じ台帳の上で、区画ごとに回を分けて進められます。</p>
+      <article class="scene" data-reveal>
+        <div class="scene-text">
+          <h3>区画ごとに、棚卸しの回を立てる</h3>
+          <p>管理ポータルで、数える区画と、読みに使う端末を選んで、棚卸しの回を立てます。区画ごとに回を分ければ、担当を分けて進められます。</p>
+        </div>
+        <figure class="shot shot-web"><div class="frame"><picture><source media="(max-width:599px)" srcset="../assets/screens/s08-stocktake-plan-m.webp" width="695" height="775"><img src="../assets/screens/s08-stocktake-plan-1920.webp" srcset="../assets/screens/s08-stocktake-plan-960.webp 960w, ../assets/screens/s08-stocktake-plan-1920.webp 1920w" sizes="(max-width:899px) 92vw, 620px" width="1920" height="911" alt="棚卸しの画面。左に棚卸しの回が並び、右に選んだ回の結果が出ている" loading="lazy" decoding="async"></picture></div><figcaption>棚卸しの回が、日付の順に並びます。</figcaption></figure>
+      </article>
+      <article class="scene" data-reveal>
+        <div class="scene-text">
+          <h3>見つからなかった樽には、理由を</h3>
+          <p>見つからなかった樽や、置き場所の違った樽には、現場の端末か管理ポータルで理由を付けます。承認は、責任者が管理ポータルで行います。訂正も取り消しも、理由と一緒に履歴に残ります。</p>
+        </div>
+        <figure class="shot shot-web"><div class="frame"><picture><source media="(max-width:599px)" srcset="../assets/screens/s09-stocktake-reasons-m.webp" width="1200" height="624"><img src="../assets/screens/s09-stocktake-reasons-1920.webp" srcset="../assets/screens/s09-stocktake-reasons-960.webp 960w, ../assets/screens/s09-stocktake-reasons-1920.webp 1920w" sizes="(max-width:899px) 92vw, 620px" width="1920" height="1142" alt="棚卸しの差異と理由の画面。見つからなかった樽に理由が付いている" loading="lazy" decoding="async"></picture></div><figcaption>見つからなかった樽に理由を付け、責任者が承認します。</figcaption></figure>
+      </article>
+      <article class="scene" data-reveal>
+        <div class="scene-text">
+          <h3>貯蔵庫を、図面と立体で見渡す</h3>
+          <p>列の配置を図面で、棚の段までを立体で見渡せます。樽の色で、状態（充填中・空・要確認）が分かります。</p>
+        </div>
+        <figure class="shot shot-web"><div class="frame"><picture><source media="(max-width:599px)" srcset="../assets/screens/s07-places-3d-m.webp" width="1200" height="612"><img src="../assets/screens/s07-places-3d-1920.webp" srcset="../assets/screens/s07-places-3d-960.webp 960w, ../assets/screens/s07-places-3d-1920.webp 1920w" sizes="(max-width:899px) 92vw, 620px" width="1920" height="1004" alt="貯蔵庫を立体で見る画面。建物の中の棚に、樽が並んでいる" loading="lazy" decoding="async"></picture></div><figcaption>貯蔵庫を立体で見渡す画面。</figcaption></figure>
+      </article>
+      <article class="scene" data-reveal>
+        <div class="scene-text">
+          <h3>現場から書き込めるのは、承認した端末だけ</h3>
+          <p>新しい端末と RFIDリーダーは、管理者が確かめてから使えるようになります。管理ポータルは、2段階認証でログインして使います。</p>
+        </div>
+        <figure class="shot shot-web"><div class="frame"><picture><source media="(max-width:599px)" srcset="../assets/screens/s12-device-approval-m.webp" width="1200" height="449"><img src="../assets/screens/s12-device-approval-1500.webp" srcset="../assets/screens/s12-device-approval-960.webp 960w, ../assets/screens/s12-device-approval-1500.webp 1500w" sizes="(max-width:899px) 92vw, 620px" width="1500" height="674" alt="端末の承認の画面。端末の名前の欄と、端末を承認するボタンがある" loading="lazy" decoding="async"></picture></div><figcaption>新しい端末は、管理者が確かめてから使えるようになります。</figcaption></figure>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec" id="tagging" aria-labelledby="tagging-title">
+    <div class="shell">
+      <p class="label">タグを付ける</p>
+      <h2 class="d2" id="tagging-title" data-reveal><span class="ib">樽に結び付けるのは、</span><span class="ib">確認を1回押すだけ。</span></h2>
+      <ol class="thread" data-thread>
+        <li><b>樽を選ぶ</b><span>一覧から、タグを貼る樽を</span></li>
+        <li><b>QR を読む</b><span>RFIDリーダーで、タグの表面の QR を</span></li>
+        <li><b>紐付ける</b><span>確認は1回。間違えたら、その場で取り消せます</span></li>
+      </ol>
+      <article class="scene" data-reveal>
+        <div class="scene-text">
+          <h3>タグの QR を読んで、確認を1回</h3>
+          <p>タグを貼る樽を一覧で選び、RFIDリーダーでタグの表面の QR を読んで、確認を1回押します。間違えたら、その場で取り消せます。</p>
+        </div>
+        <figure class="shot"><div class="tag-box"><img src="../assets/photos/p2-cask-tag-1200.webp" srcset="../assets/photos/p2-cask-tag-600.webp 600w, ../assets/photos/p2-cask-tag-1200.webp 1200w" sizes="(max-width:899px) 84vw, 560px" width="1200" height="347" alt="白い横長のカスク用 RFID タグの写真。左に QR が印刷されている" loading="lazy" decoding="async"></div><figcaption>カスク用の RFID タグ。樽1本に1枚貼ります。</figcaption></figure>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec ground" id="points" aria-labelledby="points-title">
+    <div class="shell">
+      <p class="label">決め手</p>
+      <h2 class="d2" id="points-title" data-reveal><span class="ib">いまのしくみは、</span><span class="ib">そのままに。</span></h2>
+      <ul class="plain points" data-reveal>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-building"/></svg><span>いまの台帳や生産管理のしくみを置き換えません。現場の棚卸しと置き場所の照合から始めます。</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-device"/></svg><span>1棟・1区画から始めて、区画ごとの分担へ広げられます。</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-history"/></svg><span>読めるかどうかは、買っていただく前の簡易検証で、お客様の貯蔵庫で確かめます。</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg><span>記録は消さずに直し、直した理由も残ります。</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec page-faq" id="faq" aria-labelledby="faq-title">
+    <div class="shell">
+      <h2 class="d2" id="faq-title">よくある質問</h2>
+      <div class="faq">
+        <details><summary>すべての樽を RFID で読めますか</summary><p class="answer" data-copy="faq-rfid">置き方によって変わります。買っていただく前の簡易検証で確かめます。読みにくい棚は、タグの QR や樽の番号と、置き場所の記録で管理します。</p></details>
+        <details><summary>いまの台帳や生産管理のしくみと一緒に使えますか</summary><p class="answer" data-copy="faq-system">置き換えるものではありません。現場の棚卸しと置き場所の照合から始めます。いまお使いの一覧の取り込みや、つなぎ方は、項目を見ながら個別に決めます。</p></details>
+        <details><summary>法定の帳簿として使えますか</summary><p class="answer" data-copy="faq-ledger">使えません。記録と照合を助ける道具です。帳簿は、いまのままお使いください。</p></details>
+        <details><summary>熟成の状態は分かりますか</summary><p class="answer" data-copy="faq-aging">RFID は樽を見分けるためのもので、熟成の状態は測れません。測った液量や度数を、記録として残します。</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band on-navy" id="apply" aria-labelledby="apply-title">
+    <div class="shell">
+      <div data-reveal>
+        <h2 class="d2" id="apply-title" data-copy="apply-title"><span class="ib">まずは、樽の置き場所と</span><span class="ib">記録のつけ方を</span><span class="ib">聞かせてください。</span></h2>
+        <p class="fine" data-copy="apply-fine">お問い合わせフォームが開きます。相談テーマは「CASK / BARREL（アーリーアダプター・ヒアリング）」をお選びください。選べない場合は、お問い合わせ内容に「CASK / BARREL」とお書き添えください。</p>
+      </div>
+      <a class="btn w1" href="https://particle-design.co.jp/contact.html?topic=caskbarrel" data-goal="CTA Hearing Segment" data-reveal>ヒアリングを申し込む<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="shell">
+    <div class="foot-top">
+      <p class="foot-brand"><svg aria-hidden="true"><use href="#cb-mark"/></svg><span>CASK / BARREL は Particle design株式会社のサービスです。</span></p>
+      <nav class="foot-links" aria-label="会社と規約">
+        <a href="https://particle-design.co.jp/">Particle design株式会社</a>
+        <a href="https://particle-design.co.jp/products/">Product 一覧</a>
+        <a href="https://particle-design.co.jp/contact.html?topic=caskbarrel">お問い合わせ</a>
+        <a href="https://particle-design.co.jp/privacy-policy.html">プライバシーポリシー</a>
+      </nav>
+      <nav class="lang" aria-label="言語（フッター）"><b lang="ja" aria-current="true">日本語</b><span aria-hidden="true">/</span><a href="../en/distillery/" lang="en" hreflang="en" data-lang="en">English</a></nav>
+    </div>
+    <div class="foot-notes">
+      <p data-copy="screen-note">画面はすべて架空のデータです（会社名に「（デモ）」が付きます）。2026年11月時点の画面です。</p>
+      <p data-copy="trademark">各製品名・社名は、各社の商標または登録商標です。<a href="../trademarks/">商標について</a>もご参照ください。</p>
+      <p>© 2026 Particle design Inc.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

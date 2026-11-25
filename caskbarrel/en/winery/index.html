@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="light">
+<title>Wineries | CASK / BARREL (beta)</title>
+<meta name="description" content="Which barrel was topped up with which lot, when, and by how many litres. Lots, fill count and barrel status, kept as a record for each barrel. Barrel management for wineries, in beta.">
+<link rel="canonical" href="https://particle-design.co.jp/caskbarrel/en/winery/">
+<link rel="alternate" hreflang="ja" href="https://particle-design.co.jp/caskbarrel/winery/">
+<link rel="alternate" hreflang="en" href="https://particle-design.co.jp/caskbarrel/en/winery/">
+<link rel="alternate" hreflang="x-default" href="https://particle-design.co.jp/caskbarrel/en/winery/">
+<script src="../../../lang.js?v=1e536e42"></script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CASK / BARREL">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ja_JP">
+<meta property="og:title" content="Wineries | CASK / BARREL (beta)">
+<meta property="og:description" content="Which barrel was topped up with which lot, when, and by how many litres. Lots, fill count and barrel status, kept as a record for each barrel. Barrel management for wineries, in beta.">
+<meta property="og:url" content="https://particle-design.co.jp/caskbarrel/en/winery/">
+<meta property="og:image" content="https://particle-design.co.jp/caskbarrel/assets/og/og-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="CASK / BARREL. Time and records, laid down for what comes next. Part of the 3D view of a warehouse (fictional data)">
+<link rel="icon" href="../../assets/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css?v=565ba1bf">
+<link rel="stylesheet" href="../../assets/fonts/plex-sans-jp.css"><!-- 書体: IBM Plex Sans JP 3.0.0 の分割 woff2（400・600）。許諾は assets/fonts/OFL.txt -->
+<script src="../../assets/site.js?v=14826bd4"></script>
+</head>
+<body>
+
+<svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="cbMarkBg" cx="80" cy="18" r="120" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2A4468"/><stop offset=".5" stop-color="#15263D"/><stop offset="1" stop-color="#0B1626"/></radialGradient>
+    <linearGradient id="cbMarkCask" x1="36" y1="33" x2="72" y2="75" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#E8BC76"/><stop offset=".55" stop-color="#C88A3A"/><stop offset="1" stop-color="#9C6620"/></linearGradient>
+  </defs>
+  <symbol id="cb-mark" viewBox="20 14 74 74">
+    <rect x="20" y="14" width="74" height="74" rx="17" fill="url(#cbMarkBg)"/>
+    <path d="M41,33 Q54,29.5 67,33 Q74.5,54 67,75 Q54,78.5 41,75 Q33.5,54 41,33 Z" fill="url(#cbMarkCask)"/>
+    <path d="M49,31.6 Q46.6,54 49,76.4 M59,31.6 Q61.4,54 59,76.4" fill="none" stroke="#8A5A1E" stroke-opacity=".4" stroke-width="1.1" stroke-linecap="round"/>
+    <path d="M37.8,41 Q54,44.6 70.2,41 M37.8,67 Q54,70.6 70.2,67" fill="none" stroke="#15263D" stroke-width="2.8" stroke-linecap="round"/>
+    <path d="M74,27 Q81,31 82.5,39" fill="none" stroke="#F4E3C3" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M77.5,21.5 Q87.5,27 89.5,38.5" fill="none" stroke="#F4E3C3" stroke-opacity=".6" stroke-width="2.2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><path d="M12,3.75 A8.25,8.25 0 1 1 11.99,3.75 Z M12,10.9 V16.4 M12,7.7 L12,7.75"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5,12 H18.5 M13.5,7 L18.5,12 L13.5,17"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12,5 V18.5 M7,13.5 L12,18.5 L17,13.5"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><path d="M6.75,10.75 H17.25 Q18.25,10.75 18.25,11.75 V19 Q18.25,20 17.25,20 H6.75 Q5.75,20 5.75,19 V11.75 Q5.75,10.75 6.75,10.75 Z M8.75,10.75 V8 A3.25,3.25 0 0 1 15.25,8 V10.75 M12,14.4 V16.4"/></symbol>
+  <symbol id="i-device" viewBox="0 0 24 24"><path d="M8,3.75 H16 Q17.25,3.75 17.25,5 V19 Q17.25,20.25 16,20.25 H8 Q6.75,20.25 6.75,19 V5 Q6.75,3.75 8,3.75 Z M10.5,17.25 H13.5"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><path d="M4.75,20.25 V8.5 L9.5,5.75 V20.25 M9.5,20.25 V3.75 L19.25,7 V20.25 M3.5,20.25 H20.5 M12.25,9.5 H16.5 M12.25,12.75 H16.5 M12.25,16 H16.5"/></symbol>
+  <symbol id="i-history" viewBox="0 0 24 24"><path d="M4.75,12 A7.25,7.25 0 1 0 6.9,6.85 M4.4,4.6 L4.75,8.1 L8.25,7.75 M12,8 V12.3 L14.9,14.2"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4.5,7 H19.5 M4.5,12 H19.5 M4.5,17 H19.5"/></symbol>
+</svg>
+
+
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="corp-bar" aria-label="Company site">
+  <div class="shell"><a href="https://particle-design.co.jp/en/products/"><span aria-hidden="true">←</span> All products from Particle design</a></div>
+</nav>
+
+<header class="site-header">
+  <div class="shell">
+    <a class="brand" href="../" aria-label="CASK / BARREL home">
+      <svg aria-hidden="true"><use href="#cb-mark"/></svg>
+      <span class="wordmark">CASK / BARREL</span>
+    </a>
+    <span class="badge">Beta</span>
+    <nav class="nav" aria-label="Site">
+      <a href="../distillery/">Distilleries</a>
+      <a href="../winery/" aria-current="page">Wineries</a>
+      <a href="../lab/">Blending Lab</a>
+      <a href="../#faq">FAQ</a>
+    </nav>
+    <nav class="lang" aria-label="Language"><a href="../../winery/" lang="ja" hreflang="ja" data-lang="ja">日本語</a><span aria-hidden="true">/</span><b lang="en" aria-current="true">English</b></nav>
+    <a class="btn small header-cta" href="https://particle-design.co.jp/en/contact.html?topic=caskbarrel" data-goal="CTA Hearing Header"><span class="long">Talk to us</span><span class="short">Talk to us</span></a>
+    <details class="menu">
+      <summary aria-label="Menu"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></summary>
+      <div class="menu-panel">
+        <nav class="lang" aria-label="Language (menu)"><a href="../../winery/" lang="ja" hreflang="ja" data-lang="ja">日本語</a><span aria-hidden="true">/</span><b lang="en" aria-current="true">English</b></nav>
+        <nav aria-label="Site (menu)">
+          <a href="../distillery/">Distilleries</a>
+          <a href="../winery/" aria-current="page">Wineries</a>
+          <a href="../lab/">Blending Lab</a>
+          <a href="../early-adopter/">Early adopters</a>
+          <a href="../#faq">FAQ</a>
+        </nav>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero sub on-navy" id="top" aria-labelledby="page-title">
+    <div class="shell sub-grid">
+      <div>
+        <p class="kicker fx">Wineries</p>
+        <h1 class="d2" id="page-title"><span class="ib">Which barrel, which lot,</span> <span class="ib">when, and how many litres.</span></h1>
+        <p class="lead fx w2">Topping up, lots, fill count and barrel status can be kept as a record for each barrel. Winemaking differs from winery to winery, so we talk it through and fit the setup to yours.</p>
+        <div class="actions fx w5">
+          <a class="btn" href="https://particle-design.co.jp/en/contact.html?topic=caskbarrel" data-goal="CTA Hearing Segment">Talk to us</a>
+        </div>
+      </div>
+      <div class="fx w7">
+        <figure class="shot shot-web"><div class="frame"><img src="../../assets/screens/s05-winery-3d.webp" width="986" height="577" alt="A barrel shown as a solid model, cut open so the level of the wine inside can be seen (screen in Japanese, fictional data)" fetchpriority="high" decoding="async"></div><figcaption data-copy="screen-note-en">Screens are shown in Japanese. All data is fictional (company names are marked “(デモ)”, meaning demo). Screens as of November 2026.</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="records" aria-labelledby="records-title">
+    <div class="shell">
+      <p class="label">A record for each barrel</p>
+      <h2 class="d2" id="records-title" data-reveal><span class="ib">Topping up and lots,</span> <span class="ib">kept barrel by barrel.</span></h2>
+      <p class="lede w1" data-reveal>The record of each barrel can build up alongside the work in the cellar.</p>
+      <article class="scene" data-reveal>
+        <div class="scene-text">
+          <h3>Record topping up in bulk, room by room</h3>
+          <p>Narrow the barrels down by location (room) or lot, and record the same topping up in bulk. How many litres were added to which barrel, and from which lot, is kept barrel by barrel.</p>
+        </div>
+        <figure class="shot shot-web"><div class="frame"><picture><source media="(max-width:599px)" srcset="../../assets/screens/s05-winery-history-m.webp" width="1200" height="911"><img src="../../assets/screens/s05-winery-history-1920.webp" srcset="../../assets/screens/s05-winery-history-960.webp 960w, ../../assets/screens/s05-winery-history-1920.webp 1920w" sizes="(max-width:899px) 92vw, 620px" width="1920" height="1169" alt="Barrel history for a winery, with records of topping up and measurement, newest at the top (screen in Japanese, fictional data)" loading="lazy" decoding="async"></picture></div><figcaption>When, and how many litres were added, is kept for each barrel.</figcaption></figure>
+      </article>
+      <article class="scene" data-reveal>
+        <div class="scene-text">
+          <h3>Which lot is in which barrel</h3>
+          <p>The barrel detail shows the lot it holds, which fill it is on, and what the barrel held before.</p>
+        </div>
+        <figure class="shot shot-web"><div class="frame"><picture><source media="(max-width:599px)" srcset="../../assets/screens/s05-winery-detail-m.webp" width="1100" height="624"><img src="../../assets/screens/s05-winery-detail-1920.webp" srcset="../../assets/screens/s05-winery-detail-960.webp 960w, ../../assets/screens/s05-winery-detail-1920.webp 1920w" sizes="(max-width:899px) 92vw, 620px" width="1920" height="726" alt="The current contents of a barrel: fill number, date filled, liquid lot and previous use (screen in Japanese, fictional data)" loading="lazy" decoding="async"></picture></div></figure>
+      </article>
+      <article class="scene text-only" data-reveal>
+        <div class="scene-text">
+          <h3>Fill count and barrel status</h3>
+          <p>Each time a barrel is filled, its fill count goes up by one, and the lots of its earlier fills are kept for each barrel. How a barrel was used before records began can be kept as its history of use (new or reused, for example). Its status, such as empty, being cleaned or under repair, is kept with the reason for each change.</p>
+        </div>
+      </article>
+      <article class="scene" data-reveal>
+        <div class="scene-text">
+          <h3>Barrel selection and assemblage trials</h3>
+          <p>In the Blending Lab (optional), assemblage trials can be changed one thing at a time and compared side by side. From a sample bottle, the barrel’s record and the previous tasting open.</p>
+        </div>
+        <figure class="shot shot-web"><div class="frame"><picture><source media="(max-width:599px)" srcset="../../assets/screens/s16-winery-trials-m.webp" width="1200" height="531"><img src="../../assets/screens/s16-winery-trials-1920.webp" srcset="../../assets/screens/s16-winery-trials-960.webp 960w, ../../assets/screens/s16-winery-trials-1920.webp 1920w" sizes="(max-width:899px) 92vw, 620px" width="1920" height="751" alt="Trials for a winery side by side, with the difference from the original for each component (screen in Japanese, fictional data)" loading="lazy" decoding="async"></picture></div><figcaption>Assemblage trials, compared side by side.</figcaption></figure>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec ground" id="together" aria-labelledby="together-title">
+    <div class="shell">
+      <p class="label">Alongside your current records</p>
+      <h2 class="d2" id="together-title" data-reveal><span class="ib">Your winemaking records</span> <span class="ib">stay as they are.</span></h2>
+      <ul class="plain points" data-reveal>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-building"/></svg><span>It does not replace your current winemaking records or statutory records. It starts with barrel locations and topping-up records.</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-device"/></svg><span>Whether tags can be read is checked before you buy, in an on-site read check in your own cellar.</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-history"/></svg><span>Records are corrected without being erased, and the reason is kept too.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec page-faq" id="faq" aria-labelledby="faq-title">
+    <div class="shell">
+      <h2 class="d2" id="faq-title">Frequently asked questions</h2>
+      <div class="faq">
+        <details><summary>Can wineries use it?</summary><p class="answer" data-copy="faq-winery-en">It handles barrels and lots, topping up, transfers and barrel status. Winemaking differs from winery to winery, so we talk it through and fit the setup to yours.</p></details>
+        <details><summary>Can every barrel be read by RFID?</summary><p class="answer" data-copy="faq-rfid-barrel-en">It depends on how the barrels are stored. We check this in the on-site read check, before you buy. Racks that read poorly are managed with the QR code on the tag or the barrel number, together with the location record.</p></details>
+        <details><summary>Can we use it alongside our current winemaking records?</summary><p class="answer">It does not replace them. It starts with barrel locations and topping-up records. How to bring in the lists you use now, and how to connect, is decided case by case as we go through the items.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band on-navy" id="apply" aria-labelledby="apply-title">
+    <div class="shell">
+      <div data-reveal>
+        <h2 class="d2" id="apply-title" data-copy="apply-title-barrel-en"><span class="ib">Tell us where</span> <span class="ib">your barrels are kept</span> <span class="ib">and how you record them.</span></h2>
+        <p class="fine" data-copy="apply-fine-en">This opens our contact form. Under Topic, please choose “CASK / BARREL (early adopter enquiry)”. If you cannot choose it, please mention “CASK / BARREL” in your message.</p>
+      </div>
+      <a class="btn w1" href="https://particle-design.co.jp/en/contact.html?topic=caskbarrel" data-goal="CTA Hearing Segment" data-reveal>Talk to us<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="shell">
+    <div class="foot-top">
+      <p class="foot-brand"><svg aria-hidden="true"><use href="#cb-mark"/></svg><span>CASK / BARREL is a service of Particle design Inc.</span></p>
+      <nav class="foot-links" aria-label="Company and policies">
+        <a href="https://particle-design.co.jp/en/">Particle design Inc.</a>
+        <a href="https://particle-design.co.jp/en/products/">All products</a>
+        <a href="https://particle-design.co.jp/en/contact.html?topic=caskbarrel">Contact</a>
+        <a href="https://particle-design.co.jp/privacy-policy.html" hreflang="ja">Privacy Policy (Japanese)</a>
+      </nav>
+      <nav class="lang" aria-label="Language (footer)"><a href="../../winery/" lang="ja" hreflang="ja" data-lang="ja">日本語</a><span aria-hidden="true">/</span><b lang="en" aria-current="true">English</b></nav>
+    </div>
+    <div class="foot-notes">
+      <p data-copy="screen-note-en">Screens are shown in Japanese. All data is fictional (company names are marked “(デモ)”, meaning demo). Screens as of November 2026.</p>
+      <p data-copy="trademark-en">Product and company names are trademarks or registered trademarks of their respective owners. See also <a href="../trademarks/">Trademarks</a>.</p>
+      <p>© 2026 Particle design Inc.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

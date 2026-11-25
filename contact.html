@@ -7,13 +7,17 @@
 <meta name="description" content="Particle design株式会社へのお問い合わせフォームです。新規事業の構想、プロジェクトの推進、業務やシステムに関する課題など、お気軽にご相談ください。">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://particle-design.co.jp/contact.html">
+<link rel="alternate" hreflang="ja" href="https://particle-design.co.jp/contact.html">
+<link rel="alternate" hreflang="en" href="https://particle-design.co.jp/en/contact.html">
+<link rel="alternate" hreflang="x-default" href="https://particle-design.co.jp/en/contact.html">
+<script src="/lang.js?v=1e536e42"></script>
 <meta name="theme-color" content="#111111">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260624">
+<link rel="stylesheet" href="styles.css?v=20261125">
 <style>
   /* Contact form — quiet document layout on the same design system */
   .legal-wrap { max-width: 44rem; margin-inline: auto; padding-block: clamp(7rem, 12vh, 10rem) clamp(4rem, 9vh, 7rem); }
@@ -81,6 +85,7 @@
 <body>
 
 <a class="legal-back" id="backBtn" href="/"><span class="arrow">←</span>戻る</a>
+<nav class="lang legal-lang" aria-label="言語"><b lang="ja" aria-current="true">日本語</b><span aria-hidden="true">/</span><a href="/en/contact.html" lang="en" hreflang="en" data-lang="en">English</a></nav>
 
 <main>
   <div class="shell legal-wrap">
@@ -139,6 +144,7 @@
           <option value="プロジェクト推進・PMO">プロジェクト推進・PMO</option>
           <option value="DX・データ活用">DX・データ活用</option>
           <option value="業務設計・システム実装">業務設計・システム実装</option>
+          <option value="CASK / BARREL（アーリーアダプター・ヒアリング）">CASK / BARREL（アーリーアダプター・ヒアリング）</option>
           <option value="その他">その他</option>
         </select>
       </div>
@@ -173,6 +179,11 @@
   var form = document.getElementById('contactForm');
   var btn = document.getElementById('submitBtn');
   var status = document.getElementById('formStatus');
+
+  // CASK / BARREL のサイトから来た時（?topic=caskbarrel）は、相談テーマを選んでおく
+  if (/[?&]topic=caskbarrel(&|$)/.test(location.search)) {
+    document.getElementById('f-topic').value = 'CASK / BARREL（アーリーアダプター・ヒアリング）';
+  }
 
   function showStatus(type, msg) {
     status.className = 'form-status is-' + type;

@@ -10,6 +10,10 @@
 <meta name="robots" content="index, follow">
 <meta name="google-site-verification" content="82B7PUZTDvB36YKk1YzkADHdYWp_CM36rerUt3Weluw" />
 <link rel="canonical" href="https://particle-design.co.jp/">
+<link rel="alternate" hreflang="ja" href="https://particle-design.co.jp/">
+<link rel="alternate" hreflang="en" href="https://particle-design.co.jp/en/">
+<link rel="alternate" hreflang="x-default" href="https://particle-design.co.jp/en/">
+<script src="/lang.js?v=1e536e42" data-top></script>
 <meta name="theme-color" content="#111111">
 
 <!-- favicon -->
@@ -26,6 +30,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="ja_JP">
+<meta property="og:locale:alternate" content="en_US">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
@@ -36,7 +41,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260624">
+<link rel="stylesheet" href="styles.css?v=20261125">
+<noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
 
 <!-- Structured data: Organization -->
 <script type="application/ld+json">
@@ -72,12 +78,14 @@
     <nav class="nav" aria-label="グローバルナビゲーション">
       <a href="#philosophy">Philosophy</a>
       <a href="#service">Service</a>
+      <a href="#product">Product</a>
       <a href="#approach">Approach</a>
       <a href="#founder">Founder</a>
       <a href="#news">News</a>
       <a href="#company">Company</a>
       <a class="nav-cta" href="#contact">Contact</a>
     </nav>
+    <nav class="lang" aria-label="言語"><b lang="ja" aria-current="true">日本語</b><span aria-hidden="true">/</span><a href="/en/" lang="en" hreflang="en" data-lang="en">English</a></nav>
     <button class="nav-toggle" aria-label="メニュー" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -184,6 +192,32 @@
           <span class="name">Product / Technology Support</span>
           <p class="desc">プロトタイプから本番システムまで、ビジネス要件に最適な技術選定と実装を主導します。</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ Product ============================ -->
+  <section class="section product-section" id="product" data-scene="company" aria-labelledby="product-h">
+    <div class="shell">
+      <div class="section-head reveal">
+        <p class="eyebrow">Product</p>
+        <h2 class="section-title" id="product-h">自社で開発しているサービス</h2>
+      </div>
+      <ul class="product-list reveal d1">
+        <li class="product-card">
+          <div class="product-body">
+            <span class="product-tag">ベータ版</span>
+            <h3 class="product-name">CASK / BARREL</h3>
+            <p class="product-kind">ウイスキー蒸溜所とワイナリーのための、樽の管理サービス</p>
+            <p class="product-desc">樽1本ごとの置き場所・中身・測った値を、現場の端末と事務所の画面で1つの台帳にし、ブレンダーの試飲と試作の記録までつなげます。</p>
+            <a class="product-go" href="/caskbarrel/">CASK / BARREL のサイトを見る <span class="arrow" aria-hidden="true">→</span></a>
+          </div>
+          <div class="product-shot"><img src="products/cask-barrel.webp" width="1200" height="576" alt="貯蔵庫の通路から見た3D表示。左右の棚に樽が並んでいる" loading="lazy"></div>
+        </li>
+      </ul>
+      <p class="product-note">製品の画面（貯蔵庫の3D表示の一部）。架空のデータです。</p>
+      <div class="news-more reveal d2">
+        <a class="news-more-link" href="/products/">Product 一覧へ <span class="arrow">→</span></a>
       </div>
     </div>
   </section>
@@ -374,6 +408,7 @@
     <li><a href="#problem" data-target="problem"><span class="cn-dot"></span><span class="cn-label">Problem</span></a></li>
     <li><a href="#what-we-do" data-target="what-we-do"><span class="cn-dot"></span><span class="cn-label">What We Do</span></a></li>
     <li><a href="#service" data-target="service"><span class="cn-dot"></span><span class="cn-label">Service Areas</span></a></li>
+    <li><a href="#product" data-target="product"><span class="cn-dot"></span><span class="cn-label">Product</span></a></li>
     <li><a href="#approach" data-target="approach"><span class="cn-dot"></span><span class="cn-label">Approach</span></a></li>
     <li><a href="#founder" data-target="founder"><span class="cn-dot"></span><span class="cn-label">Founder</span></a></li>
     <li><a href="#proof" data-target="proof"><span class="cn-dot"></span><span class="cn-label">Proof of Execution</span></a></li>
@@ -394,6 +429,7 @@
       <nav class="footer-nav" aria-label="フッターナビゲーション">
         <a href="#philosophy">Philosophy</a>
         <a href="#service">Service</a>
+        <a href="#product">Product</a>
         <a href="#approach">Approach</a>
         <a href="#founder">Founder</a>
         <a href="#news">News</a>
@@ -403,6 +439,7 @@
     </div>
     <div class="footer-base">
       <small>© 2026 Particle design Inc.</small>
+      <nav class="lang" aria-label="言語（フッター）"><b lang="ja" aria-current="true">日本語</b><span aria-hidden="true">/</span><a href="/en/" lang="en" hreflang="en" data-lang="en">English</a></nav>
       <a class="privacy-link" href="privacy-policy.html">Privacy Policy</a>
     </div>
   </div>

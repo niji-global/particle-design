@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="light">
+<title>CASK / BARREL｜ウイスキー蒸溜所とワイナリーのための樽の管理（ベータ版）</title>
+<meta name="description" content="樽1本ごとの置き場所・中身・測った値を、現場の端末と事務所の画面で1つの台帳に。ウイスキー蒸溜所とワイナリーのための樽の管理サービス（ベータ版）。アーリーアダプターを募集しています。">
+<link rel="canonical" href="https://particle-design.co.jp/caskbarrel/">
+<link rel="alternate" hreflang="ja" href="https://particle-design.co.jp/caskbarrel/">
+<link rel="alternate" hreflang="en" href="https://particle-design.co.jp/caskbarrel/en/">
+<link rel="alternate" hreflang="x-default" href="https://particle-design.co.jp/caskbarrel/en/">
+<script src="../lang.js?v=1e536e42" data-top></script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CASK / BARREL">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="CASK / BARREL｜ウイスキー蒸溜所とワイナリーのための樽の管理（ベータ版）">
+<meta property="og:description" content="樽1本ごとの置き場所・中身・測った値を、現場の端末と事務所の画面で1つの台帳に。ウイスキー蒸溜所とワイナリーのための樽の管理サービス（ベータ版）。アーリーアダプターを募集しています。">
+<meta property="og:url" content="https://particle-design.co.jp/caskbarrel/">
+<meta property="og:image" content="https://particle-design.co.jp/caskbarrel/assets/og/og-ja.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="CASK / BARREL。積み重ねる時間と記録は、未来の価値をつくる。管理ポータルのホームの画面（架空のデータ）">
+<link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/site.css?v=565ba1bf">
+<link rel="stylesheet" href="assets/fonts/plex-sans-jp.css"><!-- 書体: IBM Plex Sans JP 3.0.0 の分割 woff2（400・600）。許諾は assets/fonts/OFL.txt -->
+<script src="assets/site.js?v=14826bd4"></script>
+</head>
+<body>
+
+<svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="cbMarkBg" cx="80" cy="18" r="120" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2A4468"/><stop offset=".5" stop-color="#15263D"/><stop offset="1" stop-color="#0B1626"/></radialGradient>
+    <linearGradient id="cbMarkCask" x1="36" y1="33" x2="72" y2="75" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#E8BC76"/><stop offset=".55" stop-color="#C88A3A"/><stop offset="1" stop-color="#9C6620"/></linearGradient>
+  </defs>
+  <symbol id="cb-mark" viewBox="20 14 74 74">
+    <rect x="20" y="14" width="74" height="74" rx="17" fill="url(#cbMarkBg)"/>
+    <path d="M41,33 Q54,29.5 67,33 Q74.5,54 67,75 Q54,78.5 41,75 Q33.5,54 41,33 Z" fill="url(#cbMarkCask)"/>
+    <path d="M49,31.6 Q46.6,54 49,76.4 M59,31.6 Q61.4,54 59,76.4" fill="none" stroke="#8A5A1E" stroke-opacity=".4" stroke-width="1.1" stroke-linecap="round"/>
+    <path d="M37.8,41 Q54,44.6 70.2,41 M37.8,67 Q54,70.6 70.2,67" fill="none" stroke="#15263D" stroke-width="2.8" stroke-linecap="round"/>
+    <path d="M74,27 Q81,31 82.5,39" fill="none" stroke="#F4E3C3" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M77.5,21.5 Q87.5,27 89.5,38.5" fill="none" stroke="#F4E3C3" stroke-opacity=".6" stroke-width="2.2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><path d="M12,3.75 A8.25,8.25 0 1 1 11.99,3.75 Z M12,10.9 V16.4 M12,7.7 L12,7.75"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5,12 H18.5 M13.5,7 L18.5,12 L13.5,17"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12,5 V18.5 M7,13.5 L12,18.5 L17,13.5"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><path d="M6.75,10.75 H17.25 Q18.25,10.75 18.25,11.75 V19 Q18.25,20 17.25,20 H6.75 Q5.75,20 5.75,19 V11.75 Q5.75,10.75 6.75,10.75 Z M8.75,10.75 V8 A3.25,3.25 0 0 1 15.25,8 V10.75 M12,14.4 V16.4"/></symbol>
+  <symbol id="i-device" viewBox="0 0 24 24"><path d="M8,3.75 H16 Q17.25,3.75 17.25,5 V19 Q17.25,20.25 16,20.25 H8 Q6.75,20.25 6.75,19 V5 Q6.75,3.75 8,3.75 Z M10.5,17.25 H13.5"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><path d="M4.75,20.25 V8.5 L9.5,5.75 V20.25 M9.5,20.25 V3.75 L19.25,7 V20.25 M3.5,20.25 H20.5 M12.25,9.5 H16.5 M12.25,12.75 H16.5 M12.25,16 H16.5"/></symbol>
+  <symbol id="i-history" viewBox="0 0 24 24"><path d="M4.75,12 A7.25,7.25 0 1 0 6.9,6.85 M4.4,4.6 L4.75,8.1 L8.25,7.75 M12,8 V12.3 L14.9,14.2"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4.5,7 H19.5 M4.5,12 H19.5 M4.5,17 H19.5"/></symbol>
+</svg>
+
+<a class="skip" href="#main">本文へ移る</a>
+
+<nav class="corp-bar" aria-label="会社のサイト">
+  <div class="shell"><a href="https://particle-design.co.jp/products/"><span aria-hidden="true">←</span> Particle design の Product 一覧</a></div>
+</nav>
+
+<header class="site-header">
+  <div class="shell">
+    <a class="brand" href="./" aria-label="CASK / BARREL トップ" aria-current="page">
+      <svg aria-hidden="true"><use href="#cb-mark"/></svg>
+      <span class="wordmark">CASK / BARREL</span>
+    </a>
+    <span class="badge">ベータ版</span>
+    <nav class="nav" aria-label="サイトの中の移動">
+      <a href="distillery/">ウイスキー蒸溜所</a>
+      <a href="winery/">ワイナリー</a>
+      <a href="lab/">ブレンディング・ラボ</a>
+      <a href="#faq">よくある質問</a>
+    </nav>
+    <nav class="lang" aria-label="言語"><b lang="ja" aria-current="true">日本語</b><span aria-hidden="true">/</span><a href="en/" lang="en" hreflang="en" data-lang="en">English</a></nav>
+    <a class="btn small header-cta" href="https://particle-design.co.jp/contact.html?topic=caskbarrel" data-goal="CTA Hearing Header"><span class="long">ヒアリングを申し込む</span><span class="short">申し込む</span></a>
+    <details class="menu">
+      <summary aria-label="メニュー"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></summary>
+      <div class="menu-panel">
+        <nav class="lang" aria-label="言語（メニュー）"><b lang="ja" aria-current="true">日本語</b><span aria-hidden="true">/</span><a href="en/" lang="en" hreflang="en" data-lang="en">English</a></nav>
+        <nav aria-label="サイトの中の移動（メニュー）">
+          <a href="distillery/">ウイスキー蒸溜所</a>
+          <a href="winery/">ワイナリー</a>
+          <a href="lab/">ブレンディング・ラボ</a>
+          <a href="early-adopter/">アーリーアダプター募集</a>
+          <a href="#faq">よくある質問</a>
+        </nav>
+      </div>
+    </details>
+  </div>
+</header>
+
+<nav class="rail" aria-label="ページの中の章">
+  <span class="rail-line" aria-hidden="true"></span><span class="rail-fill" aria-hidden="true"></span>
+  <ol>
+    <li><a href="#top"><span>はじめに</span></a></li>
+    <li><a href="#lose"><span>見失わない</span></a></li>
+    <li><a href="#link"><span>つながる・残る</span></a></li>
+    <li><a href="#segments"><span>お使いの現場</span></a></li>
+    <li><a href="#reading"><span>読み方</span></a></li>
+    <li><a href="#devices"><span>機器</span></a></li>
+    <li><a href="#early"><span>募集</span></a></li>
+    <li><a href="#faq"><span>質問</span></a></li>
+  </ol>
+</nav>
+
+<main id="main">
+
+
+    <section class="hero on-navy" id="top" aria-labelledby="hero-title">
+    <div class="shell">
+      <a class="announce fx" href="#early">ベータ版を公開しました。アーリーアダプターを募集しています<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <p class="kicker fx w1">ウイスキー蒸溜所とワイナリーのための、樽の管理サービス</p>
+      <h1 class="d1" id="hero-title"><span class="ln"><span>積み重ねる時間と記録は、</span></span><span class="ln"><span>未来の価値をつくる。</span></span></h1>
+      <p class="lead fx w5" data-copy="hero-lead">樽1本ごとの置き場所・中身・測った値を、現場の端末と事務所の画面で1つの台帳にし、ブレンダーの試飲と試作の記録までつなげます。</p>
+      <div class="actions fx w7">
+        <a class="btn" href="https://particle-design.co.jp/contact.html?topic=caskbarrel" data-goal="CTA Hearing Hero">ヒアリングを申し込む</a>
+        <a class="btn ghost" href="#lose">できることを見る<svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a>
+      </div>
+    </div>
+    <div class="ruler shell" role="img" aria-label="時間の線の上に、詰める・移す・測る・数える・試飲するの記録が、順に置かれていく図">
+      <div class="ruler-in" aria-hidden="true">
+        <span class="ruler-line"></span><span class="ruler-ticks"></span>
+        <ol class="ruler-dots">
+          <li class="rd1"><i></i><span>詰める</span></li>
+          <li class="rd2"><i></i><span>移す</span></li>
+          <li class="rd3"><i></i><span>測る</span></li>
+          <li class="rd4"><i></i><span>数える</span></li>
+          <li class="rd5"><i></i><span>試飲する</span></li>
+        </ol>
+      </div>
+    </div>
+    <figure class="hero-shot shell shot fx w12">
+      <div class="hero-stack">
+        <div class="shot-web"><div class="frame">
+          <picture><source media="(max-width:599px)" srcset="assets/screens/s01-home-distillery-m.webp" width="1200" height="943"><img src="assets/screens/s01-home-distillery-1920.webp" srcset="assets/screens/s01-home-distillery-960.webp 960w, assets/screens/s01-home-distillery-1920.webp 1920w" sizes="(max-width:1000px) 92vw, 920px" width="1920" height="1225" alt="管理ポータルのホーム。樽の数と、熟成年数の分布が並んでいる" fetchpriority="high" decoding="async"></picture>
+        </div></div>
+        <div class="shot-device"><div class="frame">
+          <img src="assets/screens/s17-stocktake-720.webp" srcset="assets/screens/s17-stocktake-360.webp 360w, assets/screens/s17-stocktake-720.webp 720w" sizes="(max-width:599px) 112px, 240px" width="720" height="972" alt="現場アプリの棚卸しの画面。読めた樽の数が、輪の目盛りの中に出ている" decoding="async">
+        </div></div>
+      </div>
+      <figcaption data-copy="screen-note">画面はすべて架空のデータです（会社名に「（デモ）」が付きます）。2026年11月時点の画面です。</figcaption>
+      <p class="status" data-copy="status">ベータ版です。最初にお使いいただく蒸溜所・ワイナリー（アーリーアダプター）を募集しています。導入は、簡易検証でお客様の貯蔵庫で使えることを確かめてから、準備が整いしだい順に進めます。</p>
+    </figure>
+  </section>
+
+    <section class="statement" id="idea" aria-label="考え方">
+    <div class="shell">
+      <p class="d3" data-reveal>時間は、樽の中で重なります。</p>
+      <p class="d3 w2" data-reveal>記録は、いつもの作業のついでに<br>重ねていけます。</p>
+      <p class="small w5" data-reveal>記録するのは、移す・数える・測る・試飲するときだけです。貯蔵庫では RFIDリーダーと Android 端末の「現場アプリ」を、事務所では「管理ポータル」を使います。</p>
+    </div>
+  </section>
+
+    <section class="scenes" id="scenes" aria-labelledby="scenes-title">
+    <div class="shell">
+      <h2 class="label" id="scenes-title">樽の前で、手が止まるとき</h2>
+      <ul class="quotes">
+        <li data-reveal><p class="q">あの樽は、どこに置いたか。</p><p class="a">何年も動かさない樽の置き場所が、担当の人の記憶と表計算の一覧にしかない。担当が休みの日は、端から見て回ることになる。</p></li>
+        <li data-reveal><p class="q">台帳と棚が、合わない。</p><p class="a">番号を目で見て紙に書き、事務所で台帳と突き合わせる。足りない樽がどれか分かるのは、そのあとになる。</p></li>
+        <li data-reveal><p class="q">前は、なぜこの樽を選んだのか。</p><p class="a">試飲のノートと樽の台帳が別々にあって、判断の理由は人の頭の中に残る。人が替わると、たどれなくなる。</p></li>
+      </ul>
+    </div>
+  </section>
+
+    <section class="pin wh on-navy" id="lose" aria-labelledby="lose-title">
+    <div class="pin-stage">
+      <div class="shell wh-grid">
+        <div>
+          <p class="label">見失わない</p>
+          <h2 class="d2" id="lose-title"><span class="ib">樽がどこにあるかを、</span><span class="ib">台帳で分かるように。</span></h2>
+          <ol class="caps">
+            <li class="cap is-on">
+              <h3>棚の前を歩いて、まとめて数える</h3>
+              <p>RFIDリーダーを持って通路を歩くと、樽に貼ったタグをまとめて読みます。読めた数が、その場で増えていきます。</p>
+              <p class="note"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg><span data-copy="rfid-note">読み取れる距離や確実さは、タグと貯蔵庫の置き方で変わります。</span></p>
+            </li>
+            <li class="cap">
+              <h3>読めていない樽だけが、一覧に残る</h3>
+              <p>残った樽から、そのまま探しに行けます。タグが読みにくい場所の樽も、置き場所の記録から見に行けます。</p>
+            </li>
+            <li class="cap">
+              <h3>近づくほど、音が速くなる</h3>
+              <p>探したい樽を番号か一覧で選び、RFIDリーダーを向けて歩きます。近づくほど数字が上がり、音が速くなります。図では、輪の間が詰まっていきます。</p>
+            </li>
+          </ol>
+        </div>
+        <figure class="wh-fig">
+          <svg viewBox="0 0 720 372" role="img" aria-label="棚に並んだ樽の図。通路に沿って読み取りが進むと樽が1本ずつ灯り、読めなかった2本が残る。そのうち1本を、近さを頼りに探して見つける">
+            <defs><linearGradient id="beamg" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#E8BC76" stop-opacity="0"/><stop offset=".5" stop-color="#E8BC76" stop-opacity=".36"/><stop offset="1" stop-color="#E8BC76" stop-opacity="0"/></linearGradient></defs>
+            <g aria-hidden="true">
+              <path class="rk" d="M24 70H696M24 150H696M24 230H696M24 310H696M30 14V318M195 14V318M360 14V318M525 14V318M690 14V318"/>
+              <path class="fl" d="M8 334H712"/>
+              <g transform="translate(57.5 44)"><g class="c" data-x="57.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(112.5 44)"><g class="c" data-x="112.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(167.5 44)"><g class="c" data-x="167.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(222.5 44)"><g class="c" data-x="222.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(277.5 44)"><g class="c" data-x="277.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(332.5 44)"><g class="c" data-x="332.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(387.5 44)"><g class="c" data-x="387.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(442.5 44)"><g class="c" data-x="442.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(497.5 44)"><g class="c" data-x="497.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(552.5 44)"><g class="c" data-x="552.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(607.5 44)"><g class="c" data-x="607.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(662.5 44)"><g class="c" data-x="662.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(57.5 124)"><g class="c" data-x="57.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(112.5 124)"><g class="c" data-x="112.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(167.5 124)"><g class="c" data-x="167.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(222.5 124)"><g class="c" data-x="222.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(277.5 124)"><g class="c" data-x="277.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(332.5 124)"><g class="c" data-x="332.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(387.5 124)"><g class="c" data-x="387.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(442.5 124)"><g class="c" data-x="442.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(497.5 124)"><g class="c miss tgt" data-x="497.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(552.5 124)"><g class="c" data-x="552.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(607.5 124)"><g class="c" data-x="607.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(662.5 124)"><g class="c" data-x="662.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(57.5 204)"><g class="c" data-x="57.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(112.5 204)"><g class="c" data-x="112.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(167.5 204)"><g class="c" data-x="167.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(222.5 204)"><g class="c" data-x="222.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(277.5 204)"><g class="c" data-x="277.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(332.5 204)"><g class="c" data-x="332.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(387.5 204)"><g class="c" data-x="387.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(442.5 204)"><g class="c" data-x="442.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(497.5 204)"><g class="c" data-x="497.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(552.5 204)"><g class="c" data-x="552.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(607.5 204)"><g class="c" data-x="607.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(662.5 204)"><g class="c" data-x="662.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(57.5 284)"><g class="c" data-x="57.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(112.5 284)"><g class="c" data-x="112.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(167.5 284)"><g class="c" data-x="167.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(222.5 284)"><g class="c miss" data-x="222.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(277.5 284)"><g class="c" data-x="277.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(332.5 284)"><g class="c" data-x="332.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(387.5 284)"><g class="c" data-x="387.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(442.5 284)"><g class="c" data-x="442.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(497.5 284)"><g class="c" data-x="497.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(552.5 284)"><g class="c" data-x="552.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(607.5 284)"><g class="c" data-x="607.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(662.5 284)"><g class="c" data-x="662.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g class="beam"><rect x="-70" y="8" width="140" height="318" fill="url(#beamg)"/><path d="M-8 362L0 346L8 362Z" fill="#E8BC76"/></g>
+              <g transform="translate(497.5 124)"><g class="rings"><circle r="26"/><circle r="39"/><circle r="52"/></g></g>
+            </g>
+          </svg>
+          <div class="gauge" aria-hidden="true"><span>近さ</span><i><b></b></i></div>
+          <figcaption>図は動きの説明です。実際の読み取りは、タグと貯蔵庫の置き方で変わります。</figcaption>
+        </figure>
+      </div>
+      <p class="hint" aria-hidden="true"><svg class="icon"><use href="#i-down"/></svg>スクロールすると、通路を進みます</p>
+    </div>
+  </section>
+
+    <section class="real" aria-labelledby="real-title">
+    <div class="shell">
+      <h2 class="label" id="real-title">実際の画面</h2>
+      <div class="real-grid">
+        <figure class="shot shot-device" data-reveal>
+          <div class="frame"><img src="assets/screens/s17-stocktake-720.webp" srcset="assets/screens/s17-stocktake-360.webp 360w, assets/screens/s17-stocktake-720.webp 720w" sizes="212px" width="720" height="972" alt="現場アプリの棚卸しの画面。読めた樽の数が、輪の目盛りの中に出ている" loading="lazy" decoding="async"></div>
+          <figcaption>現場アプリの棚卸し。</figcaption>
+        </figure>
+        <figure class="shot shot-device w1" data-reveal>
+          <div class="frame"><img src="assets/screens/s18-find-720.webp" srcset="assets/screens/s18-find-360.webp 360w, assets/screens/s18-find-720.webp 720w" sizes="212px" width="720" height="1295" alt="現場アプリで樽を探す画面。見つかった樽の番号と、近さの輪が出ている" loading="lazy" decoding="async"></div>
+          <figcaption>樽を探す画面。</figcaption>
+        </figure>
+        <figure class="shot shot-web w2" data-reveal>
+          <div class="frame"><picture><source media="(max-width:599px)" srcset="assets/screens/s07-places-3d-aisle-m.webp" width="1200" height="612"><img src="assets/screens/s07-places-3d-aisle-1920.webp" srcset="assets/screens/s07-places-3d-aisle-960.webp 960w, assets/screens/s07-places-3d-aisle-1920.webp 1920w" sizes="(max-width:899px) 92vw, 620px" width="1920" height="1004" alt="貯蔵庫を立体で見る画面。通路の両側の棚に、樽が段ごとに並んでいる" loading="lazy" decoding="async"></picture></div>
+          <figcaption>貯蔵庫を、棚の段まで立体で見渡す画面。棚卸しで読めた樽は色が変わります。樽を移すときは、管理ポータルでまとめて移し、間違えたら元に戻せます。</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+    <section class="pin hand" id="link" aria-labelledby="link-title">
+    <div class="pin-stage">
+      <div class="shell hand-grid">
+        <div class="hand-head">
+          <p class="label">つながる・残る</p>
+          <h2 class="d2" id="link-title"><span class="ib">現場の端末と、</span><span class="ib">事務所の画面で、</span><span class="ib">1つの台帳。</span></h2>
+          <ol class="dots" aria-hidden="true"><li></li><li></li><li></li><li></li></ol>
+        </div>
+        <div class="st is-on">
+          <div class="st-copy"><h3>測った値は、樽の前で一度だけ</h3><p>液量や度数は、樽の前で現場アプリから入れます。</p></div>
+          <figure class="st-fig shot">
+            <div class="shot-device"><div class="frame"><div class="shot-pos"><img src="assets/screens/s21-home-720.webp" srcset="assets/screens/s21-home-360.webp 360w, assets/screens/s21-home-720.webp 720w" sizes="(max-width:899px) 60vw, 400px" width="720" height="838" alt="現場アプリのホーム。棚卸し、樽を探す、タグを紐付ける、記録する、の入り口が並んでいる" loading="lazy" decoding="async"><span class="chip c-dev"></span></div></div></div>
+          </figure>
+        </div>
+        <div class="st">
+          <div class="st-copy"><h3>事務所の画面に、そのまま届く</h3><p>測り方と日時と一緒に届くので、紙に書いて打ち直す必要はありません。</p></div>
+          <figure class="st-fig shot">
+            <div class="shot-web"><div class="frame"><div class="shot-pos"><picture><source media="(max-width:599px)" srcset="assets/screens/s04-cask-detail-m.webp" width="1200" height="658"><img src="assets/screens/s04-cask-detail-1705.webp" srcset="assets/screens/s04-cask-detail-960.webp 960w, assets/screens/s04-cask-detail-1705.webp 1705w" sizes="(max-width:899px) 92vw, 620px" width="1705" height="800" alt="管理ポータルの樽の詳細。液量と度数が、測った日時と一緒に並んでいる" loading="lazy" decoding="async"></picture><span class="chip c-web"></span></div></div></div>
+          </figure>
+        </div>
+        <div class="st">
+          <div class="st-copy"><h3>樽ごとに、記録が重なっていく</h3><p>詰めた日、測った値、移し替え、採取が、樽1本ごとに並びます。担当が替わっても読み返せます。</p></div>
+          <figure class="st-fig shot">
+            <div class="shot-web rows"><div class="frame"><picture><source media="(max-width:599px)" srcset="assets/screens/s04-cask-history-m.webp" width="1200" height="979"><img src="assets/screens/s04-cask-history-1920.webp" srcset="assets/screens/s04-cask-history-960.webp 960w, assets/screens/s04-cask-history-1920.webp 1920w" sizes="(max-width:899px) 92vw, 620px" width="1920" height="1224" alt="樽の履歴の画面。採取、測定、詰めの記録が、新しい順に並んでいる" loading="lazy" decoding="async"></picture></div></div>
+          </figure>
+        </div>
+        <div class="st">
+          <div class="st-copy"><h3>消さずに直し、理由を残す</h3><p>訂正も取り消しも、履歴に残ります。棚卸しで見つからなかった樽には理由を付け、責任者が承認します。</p></div>
+          <figure class="st-fig shot">
+            <div class="shot-web"><div class="frame"><picture><source media="(max-width:599px)" srcset="assets/screens/s09-stocktake-reasons-m.webp" width="1200" height="624"><img src="assets/screens/s09-stocktake-reasons-1920.webp" srcset="assets/screens/s09-stocktake-reasons-960.webp 960w, assets/screens/s09-stocktake-reasons-1920.webp 1920w" sizes="(max-width:899px) 92vw, 620px" width="1920" height="1142" alt="棚卸しの差異と理由の画面。見つからなかった樽に理由が付いている" loading="lazy" decoding="async"></picture></div></div>
+          </figure>
+        </div>
+        <span class="fly" aria-hidden="true"></span>
+      </div>
+    </div>
+  </section>
+
+    <section class="sec lab" id="lab" aria-labelledby="lab-title">
+    <div class="shell">
+      <p class="label">つながる</p>
+      <h2 class="d2" id="lab-title">瓶から、その樽の記録へ。 <span class="badge">オプション</span></h2>
+      <p class="lede">ブレンディング・ラボ（オプション）では、瓶の QR か番号から、その樽の素性と前回の試飲の記録が並びます。ブレンダーの方の意見を伺いながら、さらに改善していきます。</p>
+      <ol class="thread" data-thread data-copy="lab-steps">
+        <li><b>瓶</b><span>QR か番号で開く</span></li>
+        <li><b>樽の素性</b><span>樽の種類、詰めてからの年月</span></li>
+        <li><b>前回の試飲</b><span>そのときの仕分けと一言</span></li>
+        <li><b>試作</b><span>1か所ずつ変えて並べる</span></li>
+        <li><b>倉庫への指示書</b><span>樽ごとの量と、足りない量</span></li>
+      </ol>
+      <div class="lab-row">
+        <figure class="shot shot-web" data-reveal>
+          <div class="frame"><picture><source media="(max-width:599px)" srcset="assets/screens/s14-lab-trials-m.webp" width="1200" height="687"><img src="assets/screens/s14-lab-trials-1920.webp" srcset="assets/screens/s14-lab-trials-960.webp 960w, assets/screens/s14-lab-trials-1920.webp 1920w" sizes="(max-width:899px) 92vw, 620px" width="1920" height="897" alt="ブレンディング・ラボで試作を並べる画面。元の試作との差が、成分ごとに出ている" loading="lazy" decoding="async"></picture></div>
+          <figcaption>変えた所には、増減の印が付きます。</figcaption>
+        </figure>
+        <div data-reveal class="w1">
+          <p>判断するのはブレンダーの方です。CASK / BARREL は配合の提案も予測もしません。判断の材料と理由を、樽の記録の横に残します。</p>
+          <p class="note"><span class="badge dev">開発中</span><span data-copy="vials-dev">試料庫の瓶を、棚の段ごとにまとめて数える機能と、1本を探す機能を作っています。</span></p>
+          <p class="mt"><a class="textlink" href="lab/">ブレンディング・ラボについて<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <section class="sec ground" id="segments" aria-labelledby="segments-title">
+    <div class="shell">
+      <h2 class="d2" id="segments-title" data-reveal>お使いの現場に合わせて。</h2>
+      <p class="lede w1" data-reveal>蒸溜所とワイナリーでは、樽の扱い方も、残したい記録も違います。</p>
+      <div class="tiles">
+        <a class="tile" href="distillery/" data-reveal>
+          <span class="t-k">ウイスキー蒸溜所</span><span class="t-d">1棟・1区画から始めて、区画ごとに棚卸しを分担するまで。</span><span class="t-go">詳しく見る<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+          <span class="t-shot"><img src="assets/screens/s07-tile.webp" width="960" height="576" alt="貯蔵庫を通路から見た立体の画面" loading="lazy" decoding="async"></span>
+        </a>
+        <a class="tile w1" href="winery/" data-reveal>
+          <span class="t-k">ワイナリー</span><span class="t-d">どの樽にどのロットが入り、いつ何 L 補酒したかを、樽ごとに。</span><span class="t-go">詳しく見る<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+          <span class="t-shot"><img src="assets/screens/s02-home-winery-m.webp" width="1200" height="943" alt="ワイナリーのホームの画面" loading="lazy" decoding="async"></span>
+        </a>
+        <a class="tile w2" href="lab/" data-reveal>
+          <span class="t-k">ブレンディング・ラボ <span class="badge">オプション</span></span><span class="t-d">瓶から樽の記録と前回の試飲へ。試作から倉庫への指示まで。</span><span class="t-go">詳しく見る<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+          <span class="t-shot"><img src="assets/screens/s13-lab-set-m.webp" width="1200" height="962" alt="ラボで、樽選びの候補を並べて見る画面" loading="lazy" decoding="async"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+    <section class="sec" id="reading" aria-labelledby="reading-title">
+    <div class="shell split">
+      <div class="text" data-reveal>
+        <p class="label">導入の前に</p>
+        <h2 class="d2" id="reading-title"><span class="ib">読めるかどうかは、</span><span class="ib">貯蔵庫ごとに確かめます。</span></h2>
+        <p>タグの読みやすさは、樽の置き方や積み方で変わります。そこで、買っていただく前に簡易検証を行い、お客様の貯蔵庫で、試験用のタグを使って同じ範囲を何度か読んで比べます。</p>
+        <p>読みにくい棚は、タグの QR や樽の番号と、置き場所の記録で管理します。RFID で読むのは、読める棚だけにすることもできます。</p>
+      </div>
+      <figure class="shot shot-web w1" data-reveal>
+        <div class="frame"><picture><source media="(max-width:599px)" srcset="assets/screens/s10-read-check-grid-m.webp" width="1150" height="945"><img src="assets/screens/s10-read-check-grid-1788.webp" srcset="assets/screens/s10-read-check-grid-960.webp 960w, assets/screens/s10-read-check-grid-1788.webp 1788w" sizes="(max-width:899px) 92vw, 620px" width="1788" height="945" alt="読み取りの検証の画面。棚と位置ごとに、読めた・読めない・未計測の印が並んでいる" loading="lazy" decoding="async"></picture></div>
+        <figcaption>読み取りの検証。同じ範囲を読んだ回ごとに、棚・段ごとの結果を並べます。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+    <section class="sec ground" id="devices" aria-labelledby="devices-title">
+    <div class="shell">
+      <p class="label">現場で使う機器</p>
+      <h2 class="d2" id="devices-title" data-reveal><span class="ib">RFIDリーダーと、</span><span class="ib">Android 端末と、</span><span class="ib">タグ。</span></h2>
+      <div class="devices">
+        <figure class="shot" data-reveal>
+          <div class="photo-box fill"><img src="assets/photos/p1-reader-device-960.webp" srcset="assets/photos/p1-reader-device-480.webp 480w, assets/photos/p1-reader-device-960.webp 960w" sizes="(max-width:599px) 76vw, 440px" width="960" height="1198" alt="貯蔵庫で、RFIDリーダーに取り付けた Android 端末を持つ手" loading="lazy" decoding="async"></div>
+          <figcaption>RFIDリーダーと Android 端末の実機を当社で撮影し、背景と端末の画面を合成した写真です。画面は現場アプリ（架空のデータ）です。写真の Android 端末は、動作を確かめた機種の1つです。</figcaption>
+        </figure>
+        <div data-reveal class="w1">
+          <figure class="shot">
+            <div class="tag-box"><img src="assets/photos/p2-cask-tag-1200.webp" srcset="assets/photos/p2-cask-tag-600.webp 600w, assets/photos/p2-cask-tag-1200.webp 1200w" sizes="(max-width:899px) 84vw, 460px" width="1200" height="347" alt="白い横長のカスク用 RFID タグの写真。左に QR が印刷されている" loading="lazy" decoding="async"></div>
+            <figcaption>カスク用の RFID タグ。樽1本に1枚貼ります。</figcaption>
+          </figure>
+          <dl class="kit">
+            <div><dt>RFIDリーダー</dt><dd>トリガーを引いて、樽のタグをまとめて読みます。</dd></div>
+            <div><dt>Android 端末</dt><dd>RFIDリーダーに取り付けて、現場アプリを使います。</dd></div>
+            <div><dt>カスク用 RFID タグ</dt><dd>樽1本に1枚。表面の QR を読んで、樽と結び付けます。</dd></div>
+            <div><dt>液体対応 RFID タグ <span class="badge dev">開発中</span></dt><dd>ラボの瓶に貼る、液体に対応した小さなタグです。</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <section class="sec" id="safety" aria-labelledby="safety-title">
+    <div class="shell split">
+      <div data-reveal>
+        <p class="label">台帳を守るしくみ</p>
+        <h2 class="d2" id="safety-title"><span class="ib">現場から書き込めるのは、</span><span class="ib">承認した端末だけ。</span></h2>
+        <ul class="plain">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg><span>管理ポータルには、全員が2段階認証でログインします。</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-device"/></svg><span>現場から台帳に書き込めるのは、管理者が承認した端末と RFIDリーダーだけです。</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-building"/></svg><span>データは会社ごとに分けて保存します。</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-history"/></svg><span>記録は消さず、訂正も取り消しも、理由と一緒に残ります。</span></li>
+        </ul>
+      </div>
+      <figure class="shot shot-web w1" data-reveal>
+        <div class="frame"><picture><source media="(max-width:599px)" srcset="assets/screens/s12-device-approval-m.webp" width="1200" height="449"><img src="assets/screens/s12-device-approval-1500.webp" srcset="assets/screens/s12-device-approval-960.webp 960w, assets/screens/s12-device-approval-1500.webp 1500w" sizes="(max-width:899px) 92vw, 620px" width="1500" height="674" alt="端末の承認の画面。端末の名前の欄と、端末を承認するボタンがある" loading="lazy" decoding="async"></picture></div>
+        <figcaption>新しい端末は、管理者が確かめてから使えるようになります。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+    <section class="sec ground early" id="early" aria-labelledby="early-title" data-goal-view="Reached Early">
+    <div class="shell">
+      <p class="label">ベータ版</p>
+      <h2 class="d2" id="early-title" data-reveal>アーリーアダプターを募集しています。</h2>
+      <p class="lede w1" data-reveal data-copy="early-lede">ベータ版を最初にお使いいただく蒸溜所とワイナリーを募集しています。まずはヒアリングで、樽の数や置き方、いまの記録のつけ方、どのくらいの規模から始めたいかを伺います。</p>
+      <ol class="thread" data-thread data-copy="early-steps">
+        <li><b>ヒアリング</b><span>樽の数と置き方、いまの記録のつけ方を伺います</span></li>
+        <li><b>簡易検証</b><span>お客様の貯蔵庫で、読めるかを確かめます</span></li>
+        <li><b>設計</b><span>タグの枚数と機器の台数を、一緒に決めます</span></li>
+        <li><b>ご購入</b><span>タグと機器をご購入いただきます</span></li>
+        <li><b>導入</b><span>準備が整いしだい、順にご案内します</span></li>
+        <li><b>無償期間</b><span>導入から一定の期間、サービス利用料は無償です</span></li>
+      </ol>
+      <div class="program" aria-label="募集の条件">
+        <div><h3>募集する蒸溜所・ワイナリー</h3><p>日本国内のウイスキー蒸溜所とワイナリー。海外の蒸溜所・ワイナリーの方は、ご相談ください。</p></div>
+        <div><h3>簡易検証で確かめること</h3><p>お客様の貯蔵庫で、試験用のタグを使い、同じ範囲を何度か読んで比べます。お使いになりたい Android 端末も、このときに確かめます。<span data-copy="trial-fee">簡易検証は有償です。費用は、場所と範囲を伺ってからご案内します。</span></p></div>
+        <div><h3>機器の一式</h3><p>カスク用 RFID タグ、RFIDリーダー、Android 端末。ラボの瓶には液体対応 RFID タグ（瓶の機能は開発中）。</p></div>
+        <div><h3>期間と条件</h3><p><span data-copy="fee-waiver">サービス利用料は、タグと機器をご購入いただいたうえで、導入から一定の期間は無償です。</span>費用は、サービス利用料、タグ・機器、簡易検証、導入の支援に分けてご案内します。</p></div>
+      </div>
+      <div class="early-cta">
+        <a class="btn" href="https://particle-design.co.jp/contact.html?topic=caskbarrel" data-goal="CTA Hearing Early">ヒアリングを申し込む</a>
+        <a class="textlink" href="early-adopter/">募集について詳しく<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+    <section class="sec" id="faq" aria-labelledby="faq-title">
+    <div class="shell">
+      <h2 class="d2" id="faq-title">よくある質問</h2>
+      <div class="faq">
+        <details><summary>ベータ版とは何ですか</summary><p class="answer">開発を進めながら、最初のお客様に使っていただく段階の版です。画面や機能は変わることがあります。</p></details>
+        <details><summary>いつから使えますか</summary><p class="answer" data-copy="faq-when">ヒアリングは、すぐに始められます。簡易検証は、ヒアリングのあとで日程をご相談します。導入は、当社の準備が整いしだい、順にご案内します。</p></details>
+        <details><summary>すべての樽を RFID で読めますか</summary><p class="answer" data-copy="faq-rfid">置き方によって変わります。買っていただく前の簡易検証で確かめます。読みにくい棚は、タグの QR や樽の番号と、置き場所の記録で管理します。</p></details>
+        <details><summary>機器は何が要りますか</summary><p class="answer" data-copy="faq-kit">樽に貼るカスク用 RFID タグ、RFIDリーダー、現場アプリを入れる Android 端末です。ラボの瓶には、液体対応 RFID タグを使います（瓶の機能は開発中）。枚数と台数は、ヒアリングと簡易検証のあとで一緒に決めます。</p></details>
+        <details><summary>いまの台帳や生産管理のしくみと一緒に使えますか</summary><p class="answer" data-copy="faq-system">置き換えるものではありません。現場の棚卸しと置き場所の照合から始めます。いまお使いの一覧の取り込みや、つなぎ方は、項目を見ながら個別に決めます。</p></details>
+        <details><summary>法定の帳簿として使えますか</summary><p class="answer" data-copy="faq-ledger">使えません。記録と照合を助ける道具です。帳簿は、いまのままお使いください。</p></details>
+        <details><summary>熟成の状態は分かりますか</summary><p class="answer" data-copy="faq-aging">RFID は樽を見分けるためのもので、熟成の状態は測れません。測った液量や度数を、記録として残します。</p></details>
+        <details><summary>AI が配合を決めたり、熟成を予測したりしますか</summary><p class="answer" data-copy="faq-ai">しません。判断するのはブレンダーの方です。</p></details>
+        <details><summary>ワイナリーでも使えますか</summary><p class="answer" data-copy="faq-winery">樽とロット、補酒（トッピング）、移し替え、樽の状態を扱えます。醸造の進め方はワイナリーごとに違うので、お話を伺って合わせます。</p></details>
+        <details><summary>費用はどのくらいですか</summary><p class="answer" data-copy="faq-cost">樽の数、貯蔵庫の数、使う範囲で変わります。サービス利用料と、タグ・機器、簡易検証、導入の支援に分けてご案内します。<span data-copy="fee-waiver">サービス利用料は、タグと機器をご購入いただいたうえで、導入から一定の期間は無償です。</span></p></details>
+      </div>
+    </div>
+  </section>
+
+    <section class="cta-band on-navy" id="apply" aria-labelledby="apply-title">
+    <div class="shell">
+      <div data-reveal>
+        <h2 class="d2" id="apply-title" data-copy="apply-title"><span class="ib">まずは、樽の置き場所と</span><span class="ib">記録のつけ方を</span><span class="ib">聞かせてください。</span></h2>
+        <p class="fine" data-copy="apply-fine">お問い合わせフォームが開きます。相談テーマは「CASK / BARREL（アーリーアダプター・ヒアリング）」をお選びください。選べない場合は、お問い合わせ内容に「CASK / BARREL」とお書き添えください。</p>
+      </div>
+      <a class="btn w1" href="https://particle-design.co.jp/contact.html?topic=caskbarrel" data-goal="CTA Hearing Band" data-reveal>ヒアリングを申し込む<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="shell">
+    <div class="foot-top">
+      <p class="foot-brand"><svg aria-hidden="true"><use href="#cb-mark"/></svg><span>CASK / BARREL は Particle design株式会社のサービスです。</span></p>
+      <nav class="foot-links" aria-label="会社と規約">
+        <a href="https://particle-design.co.jp/">Particle design株式会社</a>
+        <a href="https://particle-design.co.jp/products/">Product 一覧</a>
+        <a href="https://particle-design.co.jp/contact.html?topic=caskbarrel">お問い合わせ</a>
+        <a href="https://particle-design.co.jp/privacy-policy.html">プライバシーポリシー</a>
+      </nav>
+      <nav class="lang" aria-label="言語（フッター）"><b lang="ja" aria-current="true">日本語</b><span aria-hidden="true">/</span><a href="en/" lang="en" hreflang="en" data-lang="en">English</a></nav>
+    </div>
+    <div class="foot-notes">
+      <p data-copy="screen-note">画面はすべて架空のデータです（会社名に「（デモ）」が付きます）。2026年11月時点の画面です。</p>
+      <p data-copy="trademark">各製品名・社名は、各社の商標または登録商標です。<a href="trademarks/">商標について</a>もご参照ください。</p>
+      <p>© 2026 Particle design Inc.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="light">
+<title>ワイナリー｜CASK / BARREL（ベータ版）</title>
+<meta name="description" content="どの樽に、どのロットを、いつ何 L 補酒したか。ロット、何回目の充填か、樽の状態を、樽ごとの記録に。ワイナリーのための樽の管理サービス（ベータ版）。">
+<link rel="canonical" href="https://particle-design.co.jp/caskbarrel/winery/">
+<link rel="alternate" hreflang="ja" href="https://particle-design.co.jp/caskbarrel/winery/">
+<link rel="alternate" hreflang="en" href="https://particle-design.co.jp/caskbarrel/en/winery/">
+<link rel="alternate" hreflang="x-default" href="https://particle-design.co.jp/caskbarrel/en/winery/">
+<script src="../../lang.js?v=1e536e42"></script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CASK / BARREL">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="ワイナリー｜CASK / BARREL（ベータ版）">
+<meta property="og:description" content="どの樽に、どのロットを、いつ何 L 補酒したか。ロット、何回目の充填か、樽の状態を、樽ごとの記録に。ワイナリーのための樽の管理サービス（ベータ版）。">
+<meta property="og:url" content="https://particle-design.co.jp/caskbarrel/winery/">
+<meta property="og:image" content="https://particle-design.co.jp/caskbarrel/assets/og/og-ja.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="CASK / BARREL。積み重ねる時間と記録は、未来の価値をつくる。管理ポータルのホームの画面（架空のデータ）">
+<link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css?v=565ba1bf">
+<link rel="stylesheet" href="../assets/fonts/plex-sans-jp.css"><!-- 書体: IBM Plex Sans JP 3.0.0 の分割 woff2（400・600）。許諾は assets/fonts/OFL.txt -->
+<script src="../assets/site.js?v=14826bd4"></script>
+</head>
+<body>
+
+<svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="cbMarkBg" cx="80" cy="18" r="120" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2A4468"/><stop offset=".5" stop-color="#15263D"/><stop offset="1" stop-color="#0B1626"/></radialGradient>
+    <linearGradient id="cbMarkCask" x1="36" y1="33" x2="72" y2="75" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#E8BC76"/><stop offset=".55" stop-color="#C88A3A"/><stop offset="1" stop-color="#9C6620"/></linearGradient>
+  </defs>
+  <symbol id="cb-mark" viewBox="20 14 74 74">
+    <rect x="20" y="14" width="74" height="74" rx="17" fill="url(#cbMarkBg)"/>
+    <path d="M41,33 Q54,29.5 67,33 Q74.5,54 67,75 Q54,78.5 41,75 Q33.5,54 41,33 Z" fill="url(#cbMarkCask)"/>
+    <path d="M49,31.6 Q46.6,54 49,76.4 M59,31.6 Q61.4,54 59,76.4" fill="none" stroke="#8A5A1E" stroke-opacity=".4" stroke-width="1.1" stroke-linecap="round"/>
+    <path d="M37.8,41 Q54,44.6 70.2,41 M37.8,67 Q54,70.6 70.2,67" fill="none" stroke="#15263D" stroke-width="2.8" stroke-linecap="round"/>
+    <path d="M74,27 Q81,31 82.5,39" fill="none" stroke="#F4E3C3" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M77.5,21.5 Q87.5,27 89.5,38.5" fill="none" stroke="#F4E3C3" stroke-opacity=".6" stroke-width="2.2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><path d="M12,3.75 A8.25,8.25 0 1 1 11.99,3.75 Z M12,10.9 V16.4 M12,7.7 L12,7.75"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5,12 H18.5 M13.5,7 L18.5,12 L13.5,17"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12,5 V18.5 M7,13.5 L12,18.5 L17,13.5"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><path d="M6.75,10.75 H17.25 Q18.25,10.75 18.25,11.75 V19 Q18.25,20 17.25,20 H6.75 Q5.75,20 5.75,19 V11.75 Q5.75,10.75 6.75,10.75 Z M8.75,10.75 V8 A3.25,3.25 0 0 1 15.25,8 V10.75 M12,14.4 V16.4"/></symbol>
+  <symbol id="i-device" viewBox="0 0 24 24"><path d="M8,3.75 H16 Q17.25,3.75 17.25,5 V19 Q17.25,20.25 16,20.25 H8 Q6.75,20.25 6.75,19 V5 Q6.75,3.75 8,3.75 Z M10.5,17.25 H13.5"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><path d="M4.75,20.25 V8.5 L9.5,5.75 V20.25 M9.5,20.25 V3.75 L19.25,7 V20.25 M3.5,20.25 H20.5 M12.25,9.5 H16.5 M12.25,12.75 H16.5 M12.25,16 H16.5"/></symbol>
+  <symbol id="i-history" viewBox="0 0 24 24"><path d="M4.75,12 A7.25,7.25 0 1 0 6.9,6.85 M4.4,4.6 L4.75,8.1 L8.25,7.75 M12,8 V12.3 L14.9,14.2"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4.5,7 H19.5 M4.5,12 H19.5 M4.5,17 H19.5"/></symbol>
+</svg>
+
+
+<a class="skip" href="#main">本文へ移る</a>
+
+<nav class="corp-bar" aria-label="会社のサイト">
+  <div class="shell"><a href="https://particle-design.co.jp/products/"><span aria-hidden="true">←</span> Particle design の Product 一覧</a></div>
+</nav>
+
+<header class="site-header">
+  <div class="shell">
+    <a class="brand" href="../" aria-label="CASK / BARREL トップ">
+      <svg aria-hidden="true"><use href="#cb-mark"/></svg>
+      <span class="wordmark">CASK / BARREL</span>
+    </a>
+    <span class="badge">ベータ版</span>
+    <nav class="nav" aria-label="サイトの中の移動">
+      <a href="../distillery/">ウイスキー蒸溜所</a>
+      <a href="../winery/" aria-current="page">ワイナリー</a>
+      <a href="../lab/">ブレンディング・ラボ</a>
+      <a href="../#faq">よくある質問</a>
+    </nav>
+    <nav class="lang" aria-label="言語"><b lang="ja" aria-current="true">日本語</b><span aria-hidden="true">/</span><a href="../en/winery/" lang="en" hreflang="en" data-lang="en">English</a></nav>
+    <a class="btn small header-cta" href="https://particle-design.co.jp/contact.html?topic=caskbarrel" data-goal="CTA Hearing Header"><span class="long">ヒアリングを申し込む</span><span class="short">申し込む</span></a>
+    <details class="menu">
+      <summary aria-label="メニュー"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></summary>
+      <div class="menu-panel">
+        <nav class="lang" aria-label="言語（メニュー）"><b lang="ja" aria-current="true">日本語</b><span aria-hidden="true">/</span><a href="../en/winery/" lang="en" hreflang="en" data-lang="en">English</a></nav>
+        <nav aria-label="サイトの中の移動（メニュー）">
+          <a href="../distillery/">ウイスキー蒸溜所</a>
+          <a href="../winery/" aria-current="page">ワイナリー</a>
+          <a href="../lab/">ブレンディング・ラボ</a>
+          <a href="../early-adopter/">アーリーアダプター募集</a>
+          <a href="../#faq">よくある質問</a>
+        </nav>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero sub on-navy" id="top" aria-labelledby="page-title">
+    <div class="shell sub-grid">
+      <div>
+        <p class="kicker fx">ワイナリー</p>
+        <h1 class="d2" id="page-title"><span class="ib">どの樽に、どのロットを、</span><span class="ib">いつ何 L。</span></h1>
+        <p class="lead fx w2">補酒（トッピング）、ロット、何回目の充填か、樽の状態を、樽ごとの記録として残せます。醸造の進め方はワイナリーごとに違うので、お話を伺って合わせます。</p>
+        <div class="actions fx w5">
+          <a class="btn" href="https://particle-design.co.jp/contact.html?topic=caskbarrel" data-goal="CTA Hearing Segment">ヒアリングを申し込む</a>
+        </div>
+      </div>
+      <div class="fx w7">
+        <figure class="shot shot-web"><div class="frame"><img src="../assets/screens/s05-winery-3d.webp" width="986" height="577" alt="樽の立体の表示。手前の板を外した断面で、中のワインの高さが見えている" fetchpriority="high" decoding="async"></div><figcaption data-copy="screen-note">画面はすべて架空のデータです（会社名に「（デモ）」が付きます）。2026年11月時点の画面です。</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="records" aria-labelledby="records-title">
+    <div class="shell">
+      <p class="label">樽ごとの記録</p>
+      <h2 class="d2" id="records-title" data-reveal><span class="ib">補酒もロットも、</span><span class="ib">樽ごとに残る。</span></h2>
+      <p class="lede w1" data-reveal>セラーの作業のついでに、樽ごとの記録を重ねていけます。</p>
+      <article class="scene" data-reveal>
+        <div class="scene-text">
+          <h3>補酒を、部屋ごとにまとめて記録</h3>
+          <p>置き場所（部屋）やロットで樽を絞り込み、同じ補酒をまとめて記録します。どの樽に、どのロットから何 L 足したかが、樽ごとに残ります。</p>
+        </div>
+        <figure class="shot shot-web"><div class="frame"><picture><source media="(max-width:599px)" srcset="../assets/screens/s05-winery-history-m.webp" width="1200" height="911"><img src="../assets/screens/s05-winery-history-1920.webp" srcset="../assets/screens/s05-winery-history-960.webp 960w, ../assets/screens/s05-winery-history-1920.webp 1920w" sizes="(max-width:899px) 92vw, 620px" width="1920" height="1169" alt="ワイナリーの樽の履歴の画面。補酒と測定の記録が、新しい順に並んでいる" loading="lazy" decoding="async"></picture></div><figcaption>いつ、何 L 足したかが、樽ごとに残ります。</figcaption></figure>
+      </article>
+      <article class="scene" data-reveal>
+        <div class="scene-text">
+          <h3>どの樽に、どのロットが入っているか</h3>
+          <p>樽の詳細に、入っているロット、何回目の充填か、樽の使用歴が並びます。</p>
+        </div>
+        <figure class="shot shot-web"><div class="frame"><picture><source media="(max-width:599px)" srcset="../assets/screens/s05-winery-detail-m.webp" width="1100" height="624"><img src="../assets/screens/s05-winery-detail-1920.webp" srcset="../assets/screens/s05-winery-detail-960.webp 960w, ../assets/screens/s05-winery-detail-1920.webp 1920w" sizes="(max-width:899px) 92vw, 620px" width="1920" height="726" alt="樽の詳細の「現在の中身」。充填の回、詰めた日、液体のロット、樽の使用歴が並んでいる" loading="lazy" decoding="async"></picture></div></figure>
+      </article>
+      <article class="scene text-only" data-reveal>
+        <div class="scene-text">
+          <h3>何回目の充填か、樽の状態</h3>
+          <p>詰めるたびに充填の回が1つ進み、前の回にどのロットを入れていたかが、樽ごとに残ります。記録を始める前の使い方は、樽の使用歴（初めて使う樽か、再使用か など）として残せます。空・洗浄中・修理中といった樽の状態も、変えた理由と一緒に残ります。</p>
+        </div>
+      </article>
+      <article class="scene" data-reveal>
+        <div class="scene-text">
+          <h3>樽選びと、アッサンブラージュの試作</h3>
+          <p>ブレンディング・ラボ（オプション）では、アッサンブラージュの試作を1か所ずつ変えて、並べて比べられます。試料の瓶からは、その樽の記録と前回の試飲が開きます。</p>
+        </div>
+        <figure class="shot shot-web"><div class="frame"><picture><source media="(max-width:599px)" srcset="../assets/screens/s16-winery-trials-m.webp" width="1200" height="531"><img src="../assets/screens/s16-winery-trials-1920.webp" srcset="../assets/screens/s16-winery-trials-960.webp 960w, ../assets/screens/s16-winery-trials-1920.webp 1920w" sizes="(max-width:899px) 92vw, 620px" width="1920" height="751" alt="ワイナリーの試作を並べる画面。元の試作との差が、成分ごとに出ている" loading="lazy" decoding="async"></picture></div><figcaption>アッサンブラージュの試作を並べて比べます。</figcaption></figure>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec ground" id="together" aria-labelledby="together-title">
+    <div class="shell">
+      <p class="label">いまの記録と並べて</p>
+      <h2 class="d2" id="together-title" data-reveal><span class="ib">醸造の記録は、</span><span class="ib">いまのままに。</span></h2>
+      <ul class="plain points" data-reveal>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-building"/></svg><span>いまの醸造の記録や帳簿を置き換えません。樽の置き場所と補酒の記録から始めます。</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-device"/></svg><span>読めるかどうかは、買っていただく前の簡易検証で、お客様のセラーで確かめます。</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-history"/></svg><span>記録は消さずに直し、直した理由も残ります。</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec page-faq" id="faq" aria-labelledby="faq-title">
+    <div class="shell">
+      <h2 class="d2" id="faq-title">よくある質問</h2>
+      <div class="faq">
+        <details><summary>ワイナリーでも使えますか</summary><p class="answer" data-copy="faq-winery">樽とロット、補酒（トッピング）、移し替え、樽の状態を扱えます。醸造の進め方はワイナリーごとに違うので、お話を伺って合わせます。</p></details>
+        <details><summary>すべての樽を RFID で読めますか</summary><p class="answer" data-copy="faq-rfid">置き方によって変わります。買っていただく前の簡易検証で確かめます。読みにくい棚は、タグの QR や樽の番号と、置き場所の記録で管理します。</p></details>
+        <details><summary>いまの醸造の記録と一緒に使えますか</summary><p class="answer">置き換えるものではありません。樽の置き場所と補酒の記録から始めます。いまお使いの一覧の取り込みや、つなぎ方は、項目を見ながら個別に決めます。</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band on-navy" id="apply" aria-labelledby="apply-title">
+    <div class="shell">
+      <div data-reveal>
+        <h2 class="d2" id="apply-title" data-copy="apply-title"><span class="ib">まずは、樽の置き場所と</span><span class="ib">記録のつけ方を</span><span class="ib">聞かせてください。</span></h2>
+        <p class="fine" data-copy="apply-fine">お問い合わせフォームが開きます。相談テーマは「CASK / BARREL（アーリーアダプター・ヒアリング）」をお選びください。選べない場合は、お問い合わせ内容に「CASK / BARREL」とお書き添えください。</p>
+      </div>
+      <a class="btn w1" href="https://particle-design.co.jp/contact.html?topic=caskbarrel" data-goal="CTA Hearing Segment" data-reveal>ヒアリングを申し込む<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="shell">
+    <div class="foot-top">
+      <p class="foot-brand"><svg aria-hidden="true"><use href="#cb-mark"/></svg><span>CASK / BARREL は Particle design株式会社のサービスです。</span></p>
+      <nav class="foot-links" aria-label="会社と規約">
+        <a href="https://particle-design.co.jp/">Particle design株式会社</a>
+        <a href="https://particle-design.co.jp/products/">Product 一覧</a>
+        <a href="https://particle-design.co.jp/contact.html?topic=caskbarrel">お問い合わせ</a>
+        <a href="https://particle-design.co.jp/privacy-policy.html">プライバシーポリシー</a>
+      </nav>
+      <nav class="lang" aria-label="言語（フッター）"><b lang="ja" aria-current="true">日本語</b><span aria-hidden="true">/</span><a href="../en/winery/" lang="en" hreflang="en" data-lang="en">English</a></nav>
+    </div>
+    <div class="foot-notes">
+      <p data-copy="screen-note">画面はすべて架空のデータです（会社名に「（デモ）」が付きます）。2026年11月時点の画面です。</p>
+      <p data-copy="trademark">各製品名・社名は、各社の商標または登録商標です。<a href="../trademarks/">商標について</a>もご参照ください。</p>
+      <p>© 2026 Particle design Inc.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
