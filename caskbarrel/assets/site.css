@@ -98,8 +98,13 @@ svg{flex:none}
 @media (max-width:599px){.site-header .shell{gap:10px}.brand svg{width:30px;height:30px}.wordmark{font-size:14px;letter-spacing:.1em}.site-header .shell>.lang{display:none}.header-cta{margin-left:auto}}
 @media (max-width:767px){.site-header .badge,.header-cta .long{display:none}}
 @media (min-width:768px){.header-cta .short{display:none}}
+/* 広い窓では、ヘッダーと上の帯を本文より広く使う（項目の間を詰めない） */
+@media (min-width:1200px){.site-header .shell,.corp-bar .shell{max-width:1440px}.site-header .shell{gap:clamp(16px,calc((100vw - 1120px)/10),32px)}.nav a{padding:0 clamp(7px,calc((100vw - 1060px)/24),16px)}}
+@media (max-width:389px){.site-header .shell{gap:8px}.brand{gap:8px}.wordmark{font-size:13px;letter-spacing:.05em}.header-cta.btn{padding-left:13px;padding-right:13px}}
 @media (max-width:359px){.wordmark{display:none}}
 .m .site-header.over{background:transparent;border-color:transparent;color:#fff;-webkit-backdrop-filter:none;backdrop-filter:none}
+/* 最初の画面の中でスクロールしたら、紺の地を付ける（下を通る画面や文と重なって読めなくなるため） */
+.m .site-header.over.solid{background:rgba(11,22,38,.94);border-color:rgba(255,255,255,.14);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px)}
 .m .site-header.over .badge{background:transparent;color:var(--on-soft);border-color:rgba(255,255,255,.4)}
 .m .site-header.over .btn{background:#fff;border-color:#fff;color:var(--navy)}
 
@@ -185,6 +190,16 @@ svg{flex:none}
 .shot-device .frame>*{border-radius:20px;overflow:hidden}
 picture{display:block}
 .frame img,.frame video{display:block;width:100%;height:auto}
+/* 録画の再生と停止。標準の操作の帯は画面の中の文に重なるので、script があるときは丸いボタンに替える */
+.frame.vid{position:relative}
+.frame>.vplay{position:absolute;inset:8px;border:0;padding:0;background:none;cursor:pointer;display:grid;place-items:center}
+.vplay i{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.94);box-shadow:0 8px 24px rgba(0,0,0,.35);transition:opacity .25s,transform .25s var(--ease)}
+.vplay i::before{content:"";margin-left:5px;border-style:solid;border-width:11px 0 11px 18px;border-color:transparent transparent transparent var(--navy)}
+.vplay:hover i{transform:scale(1.05)}
+.vplay.on i{opacity:0}
+.vplay.on i::before{margin:0;width:6px;height:20px;border-width:0 5px;border-color:var(--navy)}
+.vplay.on:focus-visible i{opacity:1}
+@media (hover:hover){.vplay.on:hover i{opacity:1}}
 .shot-pos{position:relative}
 /* 動きに合わせて現れる（1回だけ）。遅れは class（w1〜w12）で付ける。style 属性は使わない */
 .w1{--d:.12s}.w2{--d:.26s}.w5{--d:.55s}.w7{--d:.7s}.w12{--d:1.2s}

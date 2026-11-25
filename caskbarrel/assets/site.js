@@ -17,7 +17,7 @@
   function goal(name){try{if(typeof w.plausible==='function')w.plausible(name)}catch(e){}}
 
   function setup(){
-    var hdr=$('.site-header'),hero=$('.hero'),shot=$('.hero-shot'),stack=$('.hero-stack');
+    var hdr=$('.site-header'),bar=$('.corp-bar'),hero=$('.hero'),shot=$('.hero-shot'),stack=$('.hero-stack');
     var wh=$('.wh'),W=null,hand=$('.hand'),H=null;
     if(wh){
       W={fig:$('.wh-fig',wh),beam:$('.beam',wh),rings:$('.rings',wh),gauge:$('.gauge b',wh),caps:$$('.cap',wh),
@@ -58,6 +58,7 @@
       refit();
       vh=w.innerHeight;var y=w.pageYOffset;
       lay.heroB=hero?hero.getBoundingClientRect().bottom+y:0;
+      lay.bar=bar?bar.offsetHeight:0;
       lay.tops=railSecs.map(function(s){return s.getBoundingClientRect().top+y});
       lay.dark=darks.map(function(s){var r=s.getBoundingClientRect();return [r.top+y,r.bottom+y]});
       lay.docH=root.scrollHeight;
@@ -114,7 +115,7 @@
     function update(){
       ticking=false;if(!on)return;
       var y=w.pageYOffset,r,i,k;
-      if(hdr&&hero)hdr.classList.toggle('over',y<lay.heroB-80);
+      if(hdr&&hero){hdr.classList.toggle('over',y<lay.heroB-80);hdr.classList.toggle('solid',y>lay.bar+4)}
       if(shot&&stack){r=shot.getBoundingClientRect();if(r.top<vh&&r.bottom>0)stack.style.setProperty('--hp',clamp((vh-r.top)/(vh*.5)).toFixed(3))}
       if(W){
         if(pinned(wh)){r=wh.getBoundingClientRect();if(r.top<vh&&r.bottom>0)whApply(clamp(-r.top/(r.height-vh)))}
@@ -145,7 +146,7 @@
       update();
     }
     function disable(){
-      on=false;root.classList.remove('m');[wh,hand].forEach(function(s){if(s)s.classList.remove('p','flow')});if(W)capsRoom(false);if(hdr)hdr.classList.remove('over');
+      on=false;root.classList.remove('m');[wh,hand].forEach(function(s){if(s)s.classList.remove('p','flow')});if(W)capsRoom(false);if(hdr)hdr.classList.remove('over','solid');
       if(io){io.disconnect();io=null}
       reveals.forEach(function(e){e.classList.remove('in')});
       clearTimeout(flyT);flyReset();
@@ -173,6 +174,15 @@
         vo.observe(s);
       });
     }
+
+    /* 録画: 押したときだけ動く。標準の操作の帯を外し、画面ぜんたいを押せるボタンにする（script が無ければ標準のまま） */
+    $$('.frame>video').forEach(function(v){
+      var b=d.createElement('button');b.type='button';b.className='vplay';b.appendChild(d.createElement('i'));
+      function set(){b.classList.toggle('on',!v.paused);b.setAttribute('aria-label',v.paused?'録画を再生する':'録画を止める')}
+      v.removeAttribute('controls');v.parentNode.classList.add('vid');v.parentNode.appendChild(b);
+      b.addEventListener('click',function(){if(v.paused)v.play();else v.pause()});
+      ['play','pause','ended'].forEach(function(n){v.addEventListener(n,set)});set();
+    });
 
     setMotion(!mq.matches);
   }
