@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="light">
+<title>CASK / BARREL | Cask management for distilleries and wineries (beta)</title>
+<meta name="description" content="One ledger for every cask: location, contents and measurements, shared by the handheld app in the warehouse and the portal in the office. Cask management for whisky distilleries and wineries, in beta. Inviting early adopters.">
+<link rel="canonical" href="https://particle-design.co.jp/caskbarrel/en/">
+<link rel="alternate" hreflang="ja" href="https://particle-design.co.jp/caskbarrel/">
+<link rel="alternate" hreflang="en" href="https://particle-design.co.jp/caskbarrel/en/">
+<link rel="alternate" hreflang="x-default" href="https://particle-design.co.jp/caskbarrel/en/">
+<script src="../../lang.js?v=1e536e42"></script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CASK / BARREL">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ja_JP">
+<meta property="og:title" content="CASK / BARREL | Cask management for distilleries and wineries (beta)">
+<meta property="og:description" content="One ledger for every cask: location, contents and measurements, shared by the handheld app in the warehouse and the portal in the office. Cask management for whisky distilleries and wineries, in beta. Inviting early adopters.">
+<meta property="og:url" content="https://particle-design.co.jp/caskbarrel/en/">
+<meta property="og:image" content="https://particle-design.co.jp/caskbarrel/assets/og/og-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="CASK / BARREL. Time and records, laid down for what comes next. Part of the 3D view of a warehouse (fictional data)">
+<link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css?v=565ba1bf">
+<link rel="stylesheet" href="../assets/fonts/plex-sans-jp.css"><!-- 書体: IBM Plex Sans JP 3.0.0 の分割 woff2（400・600）。許諾は assets/fonts/OFL.txt -->
+<script src="../assets/site.js?v=14826bd4"></script>
+</head>
+<body>
+
+<svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="cbMarkBg" cx="80" cy="18" r="120" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2A4468"/><stop offset=".5" stop-color="#15263D"/><stop offset="1" stop-color="#0B1626"/></radialGradient>
+    <linearGradient id="cbMarkCask" x1="36" y1="33" x2="72" y2="75" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#E8BC76"/><stop offset=".55" stop-color="#C88A3A"/><stop offset="1" stop-color="#9C6620"/></linearGradient>
+  </defs>
+  <symbol id="cb-mark" viewBox="20 14 74 74">
+    <rect x="20" y="14" width="74" height="74" rx="17" fill="url(#cbMarkBg)"/>
+    <path d="M41,33 Q54,29.5 67,33 Q74.5,54 67,75 Q54,78.5 41,75 Q33.5,54 41,33 Z" fill="url(#cbMarkCask)"/>
+    <path d="M49,31.6 Q46.6,54 49,76.4 M59,31.6 Q61.4,54 59,76.4" fill="none" stroke="#8A5A1E" stroke-opacity=".4" stroke-width="1.1" stroke-linecap="round"/>
+    <path d="M37.8,41 Q54,44.6 70.2,41 M37.8,67 Q54,70.6 70.2,67" fill="none" stroke="#15263D" stroke-width="2.8" stroke-linecap="round"/>
+    <path d="M74,27 Q81,31 82.5,39" fill="none" stroke="#F4E3C3" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M77.5,21.5 Q87.5,27 89.5,38.5" fill="none" stroke="#F4E3C3" stroke-opacity=".6" stroke-width="2.2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><path d="M12,3.75 A8.25,8.25 0 1 1 11.99,3.75 Z M12,10.9 V16.4 M12,7.7 L12,7.75"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5,12 H18.5 M13.5,7 L18.5,12 L13.5,17"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12,5 V18.5 M7,13.5 L12,18.5 L17,13.5"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><path d="M6.75,10.75 H17.25 Q18.25,10.75 18.25,11.75 V19 Q18.25,20 17.25,20 H6.75 Q5.75,20 5.75,19 V11.75 Q5.75,10.75 6.75,10.75 Z M8.75,10.75 V8 A3.25,3.25 0 0 1 15.25,8 V10.75 M12,14.4 V16.4"/></symbol>
+  <symbol id="i-device" viewBox="0 0 24 24"><path d="M8,3.75 H16 Q17.25,3.75 17.25,5 V19 Q17.25,20.25 16,20.25 H8 Q6.75,20.25 6.75,19 V5 Q6.75,3.75 8,3.75 Z M10.5,17.25 H13.5"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><path d="M4.75,20.25 V8.5 L9.5,5.75 V20.25 M9.5,20.25 V3.75 L19.25,7 V20.25 M3.5,20.25 H20.5 M12.25,9.5 H16.5 M12.25,12.75 H16.5 M12.25,16 H16.5"/></symbol>
+  <symbol id="i-history" viewBox="0 0 24 24"><path d="M4.75,12 A7.25,7.25 0 1 0 6.9,6.85 M4.4,4.6 L4.75,8.1 L8.25,7.75 M12,8 V12.3 L14.9,14.2"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4.5,7 H19.5 M4.5,12 H19.5 M4.5,17 H19.5"/></symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="corp-bar" aria-label="Company site">
+  <div class="shell"><a href="https://particle-design.co.jp/en/products/"><span aria-hidden="true">←</span> All products from Particle design</a></div>
+</nav>
+
+<header class="site-header">
+  <div class="shell">
+    <a class="brand" href="./" aria-label="CASK / BARREL home" aria-current="page">
+      <svg aria-hidden="true"><use href="#cb-mark"/></svg>
+      <span class="wordmark">CASK / BARREL</span>
+    </a>
+    <span class="badge">Beta</span>
+    <nav class="nav" aria-label="Site">
+      <a href="distillery/">Distilleries</a>
+      <a href="winery/">Wineries</a>
+      <a href="lab/">Blending Lab</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <nav class="lang" aria-label="Language"><a href="../" lang="ja" hreflang="ja" data-lang="ja">日本語</a><span aria-hidden="true">/</span><b lang="en" aria-current="true">English</b></nav>
+    <a class="btn small header-cta" href="https://particle-design.co.jp/en/contact.html?topic=caskbarrel" data-goal="CTA Hearing Header"><span class="long">Talk to us</span><span class="short">Talk to us</span></a>
+    <details class="menu">
+      <summary aria-label="Menu"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></summary>
+      <div class="menu-panel">
+        <nav class="lang" aria-label="Language (menu)"><a href="../" lang="ja" hreflang="ja" data-lang="ja">日本語</a><span aria-hidden="true">/</span><b lang="en" aria-current="true">English</b></nav>
+        <nav aria-label="Site (menu)">
+          <a href="distillery/">Distilleries</a>
+          <a href="winery/">Wineries</a>
+          <a href="lab/">Blending Lab</a>
+          <a href="early-adopter/">Early adopters</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+      </div>
+    </details>
+  </div>
+</header>
+
+<nav class="rail" aria-label="Sections of this page">
+  <span class="rail-line" aria-hidden="true"></span><span class="rail-fill" aria-hidden="true"></span>
+  <ol>
+    <li><a href="#top"><span>Start</span></a></li>
+    <li><a href="#lose"><span>Keeping track</span></a></li>
+    <li><a href="#link"><span>Linked and kept</span></a></li>
+    <li><a href="#segments"><span>Where you work</span></a></li>
+    <li><a href="#reading"><span>Reading</span></a></li>
+    <li><a href="#devices"><span>Hardware</span></a></li>
+    <li><a href="#early"><span>Early adopters</span></a></li>
+    <li><a href="#faq"><span>FAQ</span></a></li>
+  </ol>
+</nav>
+
+<main id="main">
+
+
+    <section class="hero on-navy" id="top" aria-labelledby="hero-title">
+    <div class="shell">
+      <a class="announce fx" href="#early">Now in beta. We are inviting early adopters.<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <p class="kicker fx w1">Cask management for whisky distilleries and wineries</p>
+      <h1 class="d1" id="hero-title"><span class="ln"><span>Time and records,</span></span> <span class="ln"><span>laid down for what comes next.</span></span></h1>
+      <p class="lead fx w5" data-copy="hero-lead-en">One ledger for every cask: where it is, what is in it and what was measured, shared by the handheld app in the warehouse and the portal in the office, and linked to the blender’s tasting and trial-blend records.</p>
+      <div class="actions fx w7">
+        <a class="btn" href="https://particle-design.co.jp/en/contact.html?topic=caskbarrel" data-goal="CTA Hearing Hero">Talk to us</a>
+        <a class="btn ghost" href="#lose">See what it does<svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a>
+      </div>
+    </div>
+    <div class="ruler shell" role="img" aria-label="Diagram of a timeline on which records are placed in order: fill, move, measure, count, taste">
+      <div class="ruler-in" aria-hidden="true">
+        <span class="ruler-line"></span><span class="ruler-ticks"></span>
+        <ol class="ruler-dots">
+          <li class="rd1"><i></i><span>Fill</span></li>
+          <li class="rd2"><i></i><span>Move</span></li>
+          <li class="rd3"><i></i><span>Measure</span></li>
+          <li class="rd4"><i></i><span>Count</span></li>
+          <li class="rd5"><i></i><span>Taste</span></li>
+        </ol>
+      </div>
+    </div>
+    <figure class="hero-shot shell shot fx w12">
+      <div class="hero-stack">
+        <div class="shot-web"><div class="frame">
+          <picture><source media="(max-width:599px)" srcset="../assets/screens/s01-home-distillery-m.webp" width="1200" height="943"><img src="../assets/screens/s01-home-distillery-1920.webp" srcset="../assets/screens/s01-home-distillery-960.webp 960w, ../assets/screens/s01-home-distillery-1920.webp 1920w" sizes="(max-width:1000px) 92vw, 920px" width="1920" height="1225" alt="Home screen of the office portal, with the number of casks and the spread of their ages (screen in Japanese, fictional data)" fetchpriority="high" decoding="async"></picture>
+        </div></div>
+        <div class="shot-device"><div class="frame">
+          <img src="../assets/screens/s17-stocktake-720.webp" srcset="../assets/screens/s17-stocktake-360.webp 360w, ../assets/screens/s17-stocktake-720.webp 720w" sizes="(max-width:599px) 112px, 240px" width="720" height="972" alt="Stocktake screen in the handheld app, with the number of casks read inside a ring gauge (screen in Japanese, fictional data)" decoding="async">
+        </div></div>
+      </div>
+      <figcaption data-copy="screen-note-en">Screens are shown in Japanese. All data is fictional (company names are marked “(デモ)”, meaning demo). Screens as of November 2026.</figcaption>
+      <p class="status" data-copy="status-en">CASK / BARREL is in beta. We are inviting whisky distilleries and wineries in Japan as early adopters. If you are elsewhere, please talk to us. Before you buy anything, a short on-site read check shows whether the tags can be read in your own warehouse or cellar. Rollouts follow in turn as we complete our preparations.</p>
+    </figure>
+  </section>
+
+    <section class="statement" id="idea" aria-label="The idea">
+    <div class="shell">
+      <p class="d3" data-reveal>Time builds up in the cask.</p>
+      <p class="d3 w2" data-reveal>The record builds up<br> as you move, count, measure and taste.</p>
+      <p class="small w5" data-reveal>You record at the moments you already move, count, measure or taste. In the warehouse you use the handheld app on an Android device with an RFID reader. In the office you use the web portal.</p>
+    </div>
+  </section>
+
+    <section class="scenes" id="scenes" aria-labelledby="scenes-title">
+    <div class="shell">
+      <h2 class="label" id="scenes-title">When the work stops, in front of a cask</h2>
+      <ul class="quotes">
+        <li data-reveal><p class="q">Where did we put that cask?</p><p class="a">Where a long-untouched cask sits is recorded in one person’s memory and a spreadsheet, and nowhere else. On that person’s day off, someone checks the racks from one end to the other.</p></li>
+        <li data-reveal><p class="q">The ledger and the racks do not match.</p><p class="a">Numbers are read by eye, written on paper and checked against the ledger back in the office. Which casks are missing becomes clear after that.</p></li>
+        <li data-reveal><p class="q">Why did we choose this cask last time?</p><p class="a">The tasting notebook and the cask ledger are kept apart, and the reason for a decision stays in someone’s head. When that person changes, it can no longer be traced.</p></li>
+      </ul>
+    </div>
+  </section>
+
+    <section class="pin wh on-navy" id="lose" aria-labelledby="lose-title">
+    <div class="pin-stage">
+      <div class="shell wh-grid">
+        <div>
+          <p class="label">Keeping track</p>
+          <h2 class="d2" id="lose-title"><span class="ib">Know where every cask is,</span> <span class="ib">from the ledger.</span></h2>
+          <ol class="caps">
+            <li class="cap is-on">
+              <h3>Count as you walk the racks</h3>
+              <p>Walk the aisle with the RFID reader and it picks up the tags on the casks as you go. The count rises as you walk.</p>
+              <p class="note"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg><span data-copy="rfid-note-en">How far and how reliably tags read depends on the tag and on how the casks are stored.</span></p>
+            </li>
+            <li class="cap">
+              <h3>The casks not yet read stay on the list</h3>
+              <p>Go straight from that list to look for them. Casks in places where tags are hard to read can be checked from the location record.</p>
+            </li>
+            <li class="cap">
+              <h3>The closer you get, the faster the beep</h3>
+              <p>Pick a cask by number or from the list, and walk with the RFID reader pointed ahead. The closer you get, the higher the reading on screen and the faster the beep. In the diagram, the rings draw closer together.</p>
+            </li>
+          </ol>
+        </div>
+        <figure class="wh-fig">
+          <svg viewBox="0 0 720 372" role="img" aria-label="Diagram of casks on racks. As reading moves along the aisle, the casks light up one by one and two are left unread. One of the two is then found by how close it is">
+            <defs><linearGradient id="beamg" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#E8BC76" stop-opacity="0"/><stop offset=".5" stop-color="#E8BC76" stop-opacity=".36"/><stop offset="1" stop-color="#E8BC76" stop-opacity="0"/></linearGradient></defs>
+            <g aria-hidden="true">
+              <path class="rk" d="M24 70H696M24 150H696M24 230H696M24 310H696M30 14V318M195 14V318M360 14V318M525 14V318M690 14V318"/>
+              <path class="fl" d="M8 334H712"/>
+              <g transform="translate(57.5 44)"><g class="c" data-x="57.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(112.5 44)"><g class="c" data-x="112.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(167.5 44)"><g class="c" data-x="167.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(222.5 44)"><g class="c" data-x="222.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(277.5 44)"><g class="c" data-x="277.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(332.5 44)"><g class="c" data-x="332.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(387.5 44)"><g class="c" data-x="387.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(442.5 44)"><g class="c" data-x="442.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(497.5 44)"><g class="c" data-x="497.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(552.5 44)"><g class="c" data-x="552.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(607.5 44)"><g class="c" data-x="607.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(662.5 44)"><g class="c" data-x="662.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(57.5 124)"><g class="c" data-x="57.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(112.5 124)"><g class="c" data-x="112.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(167.5 124)"><g class="c" data-x="167.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(222.5 124)"><g class="c" data-x="222.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(277.5 124)"><g class="c" data-x="277.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(332.5 124)"><g class="c" data-x="332.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(387.5 124)"><g class="c" data-x="387.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(442.5 124)"><g class="c" data-x="442.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(497.5 124)"><g class="c miss tgt" data-x="497.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(552.5 124)"><g class="c" data-x="552.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(607.5 124)"><g class="c" data-x="607.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(662.5 124)"><g class="c" data-x="662.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(57.5 204)"><g class="c" data-x="57.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(112.5 204)"><g class="c" data-x="112.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(167.5 204)"><g class="c" data-x="167.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(222.5 204)"><g class="c" data-x="222.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(277.5 204)"><g class="c" data-x="277.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(332.5 204)"><g class="c" data-x="332.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(387.5 204)"><g class="c" data-x="387.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(442.5 204)"><g class="c" data-x="442.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(497.5 204)"><g class="c" data-x="497.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(552.5 204)"><g class="c" data-x="552.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(607.5 204)"><g class="c" data-x="607.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(662.5 204)"><g class="c" data-x="662.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(57.5 284)"><g class="c" data-x="57.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(112.5 284)"><g class="c" data-x="112.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(167.5 284)"><g class="c" data-x="167.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(222.5 284)"><g class="c miss" data-x="222.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(277.5 284)"><g class="c" data-x="277.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(332.5 284)"><g class="c" data-x="332.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(387.5 284)"><g class="c" data-x="387.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(442.5 284)"><g class="c" data-x="442.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(497.5 284)"><g class="c" data-x="497.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(552.5 284)"><g class="c" data-x="552.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(607.5 284)"><g class="c" data-x="607.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g transform="translate(662.5 284)"><g class="c" data-x="662.5"><circle class="b" r="21"/><circle class="r" r="16.4"/><rect class="t" x="-9" y="-13" width="18" height="4.4" rx=".8"/></g></g>
+              <g class="beam"><rect x="-70" y="8" width="140" height="318" fill="url(#beamg)"/><path d="M-8 362L0 346L8 362Z" fill="#E8BC76"/></g>
+              <g transform="translate(497.5 124)"><g class="rings"><circle r="26"/><circle r="39"/><circle r="52"/></g></g>
+            </g>
+          </svg>
+          <div class="gauge" aria-hidden="true"><span>Proximity</span><i><b></b></i></div>
+          <figcaption>The diagram explains how it works. Actual reading depends on the tag and on how the casks are stored.</figcaption>
+        </figure>
+      </div>
+      <p class="hint" aria-hidden="true"><svg class="icon"><use href="#i-down"/></svg>Scroll to walk the aisle</p>
+    </div>
+  </section>
+
+    <section class="real" aria-labelledby="real-title">
+    <div class="shell">
+      <h2 class="label" id="real-title">Actual screens</h2>
+      <div class="real-grid">
+        <figure class="shot shot-device" data-reveal>
+          <div class="frame"><img src="../assets/screens/s17-stocktake-720.webp" srcset="../assets/screens/s17-stocktake-360.webp 360w, ../assets/screens/s17-stocktake-720.webp 720w" sizes="212px" width="720" height="972" alt="Stocktake screen in the handheld app, with the number of casks read inside a ring gauge (screen in Japanese, fictional data)" loading="lazy" decoding="async"></div>
+          <figcaption>A stocktake in the handheld app.</figcaption>
+        </figure>
+        <figure class="shot shot-device w1" data-reveal>
+          <div class="frame"><img src="../assets/screens/s18-find-720.webp" srcset="../assets/screens/s18-find-360.webp 360w, ../assets/screens/s18-find-720.webp 720w" sizes="212px" width="720" height="1295" alt="Finding a cask in the handheld app, with the number of the cask found and the proximity ring (screen in Japanese, fictional data)" loading="lazy" decoding="async"></div>
+          <figcaption>Finding a cask.</figcaption>
+        </figure>
+        <figure class="shot shot-web w2" data-reveal>
+          <div class="frame"><picture><source media="(max-width:599px)" srcset="../assets/screens/s07-places-3d-aisle-m.webp" width="1200" height="612"><img src="../assets/screens/s07-places-3d-aisle-1920.webp" srcset="../assets/screens/s07-places-3d-aisle-960.webp 960w, ../assets/screens/s07-places-3d-aisle-1920.webp 1920w" sizes="(max-width:899px) 92vw, 620px" width="1920" height="1004" alt="Three-dimensional view of the warehouse, with casks tier by tier on the racks on both sides of an aisle (screen in Japanese, fictional data)" loading="lazy" decoding="async"></picture></div>
+          <figcaption>The warehouse in 3D, down to rack and tier. Casks read in a stocktake change colour. Casks are moved in bulk in the office portal, and a move can be undone.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+    <section class="pin hand" id="link" aria-labelledby="link-title">
+    <div class="pin-stage">
+      <div class="shell hand-grid">
+        <div class="hand-head">
+          <p class="label">Linked and kept</p>
+          <h2 class="d2" id="link-title"><span class="ib">One ledger,</span> <span class="ib">for the device in the warehouse</span> <span class="ib">and the screen in the office.</span></h2>
+          <ol class="dots" aria-hidden="true"><li></li><li></li><li></li><li></li></ol>
+        </div>
+        <div class="st is-on">
+          <div class="st-copy"><h3>Enter a measurement once, at the cask</h3><p>Volume and strength go into the handheld app, right at the cask.</p></div>
+          <figure class="st-fig shot">
+            <div class="shot-device"><div class="frame"><div class="shot-pos"><img src="../assets/screens/s21-home-720.webp" srcset="../assets/screens/s21-home-360.webp 360w, ../assets/screens/s21-home-720.webp 720w" sizes="(max-width:899px) 60vw, 400px" width="720" height="838" alt="Home screen of the handheld app, with entries for stocktake, finding a cask, linking a tag and recording (screen in Japanese, fictional data)" loading="lazy" decoding="async"><span class="chip c-dev"></span></div></div></div>
+          </figure>
+        </div>
+        <div class="st">
+          <div class="st-copy"><h3>It reaches the screen in the office as entered</h3><p>It arrives with the method and the time, so there is no need to write it on paper and type it in again.</p></div>
+          <figure class="st-fig shot">
+            <div class="shot-web"><div class="frame"><div class="shot-pos"><picture><source media="(max-width:599px)" srcset="../assets/screens/s04-cask-detail-m.webp" width="1200" height="658"><img src="../assets/screens/s04-cask-detail-1705.webp" srcset="../assets/screens/s04-cask-detail-960.webp 960w, ../assets/screens/s04-cask-detail-1705.webp 1705w" sizes="(max-width:899px) 92vw, 620px" width="1705" height="800" alt="Cask detail in the office portal, with volume and strength next to when they were measured (screen in Japanese, fictional data)" loading="lazy" decoding="async"></picture><span class="chip c-web"></span></div></div></div>
+          </figure>
+        </div>
+        <div class="st">
+          <div class="st-copy"><h3>The record builds up, cask by cask</h3><p>Fill date, measurements, transfers and samples drawn line up for each cask. Whoever takes over can read back what happened.</p></div>
+          <figure class="st-fig shot">
+            <div class="shot-web rows"><div class="frame"><picture><source media="(max-width:599px)" srcset="../assets/screens/s04-cask-history-m.webp" width="1200" height="979"><img src="../assets/screens/s04-cask-history-1920.webp" srcset="../assets/screens/s04-cask-history-960.webp 960w, ../assets/screens/s04-cask-history-1920.webp 1920w" sizes="(max-width:899px) 92vw, 620px" width="1920" height="1224" alt="Cask history, with records of sampling, measurement and filling, newest at the top (screen in Japanese, fictional data)" loading="lazy" decoding="async"></picture></div></div>
+          </figure>
+        </div>
+        <div class="st">
+          <div class="st-copy"><h3>Correct without erasing, and keep the reason</h3><p>Corrections and cancellations stay in the history. A cask not found in a stocktake is given a reason and signed off by the person responsible.</p></div>
+          <figure class="st-fig shot">
+            <div class="shot-web"><div class="frame"><picture><source media="(max-width:599px)" srcset="../assets/screens/s09-stocktake-reasons-m.webp" width="1200" height="624"><img src="../assets/screens/s09-stocktake-reasons-1920.webp" srcset="../assets/screens/s09-stocktake-reasons-960.webp 960w, ../assets/screens/s09-stocktake-reasons-1920.webp 1920w" sizes="(max-width:899px) 92vw, 620px" width="1920" height="1142" alt="Stocktake discrepancies and reasons, with a reason given for a cask that was not found (screen in Japanese, fictional data)" loading="lazy" decoding="async"></picture></div></div>
+          </figure>
+        </div>
+        <span class="fly" aria-hidden="true"></span>
+      </div>
+    </div>
+  </section>
+
+    <section class="sec lab" id="lab" aria-labelledby="lab-title">
+    <div class="shell">
+      <p class="label">Linked</p>
+      <h2 class="d2" id="lab-title">From the bottle to its cask’s record. <span class="badge">Optional</span></h2>
+      <p class="lede">In the Blending Lab (optional), open a sample bottle from its QR code or its number, and the cask’s background and the previous tasting record line up. We keep improving it with the views of blenders.</p>
+      <ol class="thread" data-thread data-copy="lab-steps-en">
+        <li><b>Bottle</b><span>Open it by QR code or number</span></li>
+        <li><b>The cask’s background</b><span>Cask type, time since filling</span></li>
+        <li><b>The previous tasting</b><span>How it was sorted, and the note left</span></li>
+        <li><b>Trial blends</b><span>Change one thing at a time, side by side</span></li>
+        <li><b>Instruction for the warehouse</b><span>Volume per cask, and any shortfall</span></li>
+      </ol>
+      <div class="lab-row">
+        <figure class="shot shot-web" data-reveal>
+          <div class="frame"><picture><source media="(max-width:599px)" srcset="../assets/screens/s14-lab-trials-m.webp" width="1200" height="687"><img src="../assets/screens/s14-lab-trials-1920.webp" srcset="../assets/screens/s14-lab-trials-960.webp 960w, ../assets/screens/s14-lab-trials-1920.webp 1920w" sizes="(max-width:899px) 92vw, 620px" width="1920" height="897" alt="Trial blends side by side in the Blending Lab, with the difference from the original for each component (screen in Japanese, fictional data)" loading="lazy" decoding="async"></picture></div>
+          <figcaption>Where something was changed, a mark shows whether it went up or down.</figcaption>
+        </figure>
+        <div data-reveal class="w1">
+          <p>The decision is the blender’s. CASK / BARREL does not suggest blends or make predictions. It keeps what the decision was based on, and the reason, next to the cask’s record.</p>
+          <p class="note"><span class="badge dev">In development</span><span data-copy="vials-dev-en">We are building a way to count the bottles in the sample store in bulk, shelf by shelf, and a way to find a single bottle.</span></p>
+          <p class="mt"><a class="textlink" href="lab/">About the Blending Lab<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <section class="sec ground" id="segments" aria-labelledby="segments-title">
+    <div class="shell">
+      <h2 class="d2" id="segments-title" data-reveal>To fit where you work.</h2>
+      <p class="lede w1" data-reveal>Distilleries and wineries handle casks and barrels differently, and want to keep different records.</p>
+      <div class="tiles">
+        <a class="tile" href="distillery/" data-reveal>
+          <span class="t-k">Whisky distilleries</span> <span class="t-d">From starting with one warehouse or one section, to sharing stocktakes section by section.</span> <span class="t-go">Learn more<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+          <span class="t-shot"><img src="../assets/screens/s07-tile.webp" width="960" height="576" alt="Three-dimensional view along a warehouse aisle (fictional data)" loading="lazy" decoding="async"></span>
+        </a>
+        <a class="tile w1" href="winery/" data-reveal>
+          <span class="t-k">Wineries</span> <span class="t-d">Which lot is in which barrel, and when and by how many litres it was topped up, barrel by barrel.</span> <span class="t-go">Learn more<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+          <span class="t-shot"><img src="../assets/screens/s02-home-winery-m.webp" width="1200" height="943" alt="Home screen for a winery (screen in Japanese, fictional data)" loading="lazy" decoding="async"></span>
+        </a>
+        <a class="tile w2" href="lab/" data-reveal>
+          <span class="t-k">Blending Lab <span class="badge">Optional</span></span> <span class="t-d">From a bottle to the cask’s record and the previous tasting. From trial blends to the instruction for the warehouse.</span> <span class="t-go">Learn more<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+          <span class="t-shot"><img src="../assets/screens/s13-lab-set-m.webp" width="1200" height="962" alt="Candidates for cask selection, side by side in the lab (screen in Japanese, fictional data)" loading="lazy" decoding="async"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+    <section class="sec" id="reading" aria-labelledby="reading-title">
+    <div class="shell split">
+      <div class="text" data-reveal>
+        <p class="label">Before rollout</p>
+        <h2 class="d2" id="reading-title"><span class="ib">Whether tags can be read</span> <span class="ib">is checked warehouse by warehouse.</span></h2>
+        <p>How well tags read changes with how casks are racked or stacked. So before you buy anything, we run an on-site read check in your own warehouse or cellar: test tags, the same area read several times, and the results compared.</p>
+        <p>Racks that read poorly are managed with the QR code on the tag or the cask number, together with the location record. You can also keep RFID to the racks that read.</p>
+      </div>
+      <figure class="shot shot-web w1" data-reveal>
+        <div class="frame"><picture><source media="(max-width:599px)" srcset="../assets/screens/s10-read-check-grid-m.webp" width="1150" height="945"><img src="../assets/screens/s10-read-check-grid-1788.webp" srcset="../assets/screens/s10-read-check-grid-960.webp 960w, ../assets/screens/s10-read-check-grid-1788.webp 1788w" sizes="(max-width:899px) 92vw, 620px" width="1788" height="945" alt="Read check screen, with marks by rack and position for read, not read, and not measured (screen in Japanese, fictional data)" loading="lazy" decoding="async"></picture></div>
+        <figcaption>Read check. For each pass over the same area, results are listed by rack and tier.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+    <section class="sec ground" id="devices" aria-labelledby="devices-title">
+    <div class="shell">
+      <p class="label">Hardware on site</p>
+      <h2 class="d2" id="devices-title" data-reveal><span class="ib">An RFID reader,</span> <span class="ib">an Android device</span> <span class="ib">and tags.</span></h2>
+      <div class="devices">
+        <figure class="shot" data-reveal>
+          <div class="photo-box fill"><img src="../assets/photos/p1-reader-device-960.webp" srcset="../assets/photos/p1-reader-device-480.webp 480w, ../assets/photos/p1-reader-device-960.webp 960w" sizes="(max-width:599px) 76vw, 440px" width="960" height="1198" alt="A hand holding an Android device mounted on an RFID reader, in a warehouse" loading="lazy" decoding="async"></div>
+          <figcaption>We photographed an actual RFID reader and Android device, and composited the background and the device’s screen. The screen is the handheld app (fictional data). The Android device in the photo is one of the models we have confirmed.</figcaption>
+        </figure>
+        <div data-reveal class="w1">
+          <figure class="shot">
+            <div class="tag-box"><img src="../assets/photos/p2-cask-tag-1200.webp" srcset="../assets/photos/p2-cask-tag-600.webp 600w, ../assets/photos/p2-cask-tag-1200.webp 1200w" sizes="(max-width:899px) 84vw, 460px" width="1200" height="347" alt="Photo of a white, oblong RFID tag for casks, with a QR code printed on the left" loading="lazy" decoding="async"></div>
+            <figcaption>RFID tag for casks. One goes on each cask.</figcaption>
+          </figure>
+          <dl class="kit">
+            <div><dt>RFID reader</dt><dd>Pull the trigger and it reads the tags on the casks in bulk.</dd></div>
+            <div><dt>Android device</dt><dd>Mounted on the RFID reader, running the handheld app.</dd></div>
+            <div><dt>RFID tag for casks</dt><dd>One per cask. Read the QR code on its face to link it to the cask.</dd></div>
+            <div><dt>RFID tag for liquid-filled bottles <span class="badge dev">In development</span></dt><dd>A small tag made for liquids, for the bottles in the lab.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <section class="sec" id="safety" aria-labelledby="safety-title">
+    <div class="shell split">
+      <div data-reveal>
+        <p class="label">Protecting the ledger</p>
+        <h2 class="d2" id="safety-title"><span class="ib">To write from the warehouse,</span> <span class="ib">a device must be approved.</span></h2>
+        <ul class="plain">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg><span>Everyone signs in to the office portal with two-step verification.</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-device"/></svg><span>In the warehouse, devices and RFID readers must be approved by an administrator before they can write to the ledger.</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-building"/></svg><span>Each company’s data is stored separately.</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-history"/></svg><span>Records are not erased. Corrections and cancellations are kept, each with its reason.</span></li>
+        </ul>
+      </div>
+      <figure class="shot shot-web w1" data-reveal>
+        <div class="frame"><picture><source media="(max-width:599px)" srcset="../assets/screens/s12-device-approval-m.webp" width="1200" height="449"><img src="../assets/screens/s12-device-approval-1500.webp" srcset="../assets/screens/s12-device-approval-960.webp 960w, ../assets/screens/s12-device-approval-1500.webp 1500w" sizes="(max-width:899px) 92vw, 620px" width="1500" height="674" alt="Device approval screen, with a field for the device name and a button to approve the device (screen in Japanese, fictional data)" loading="lazy" decoding="async"></picture></div>
+        <figcaption>A new device can be used once an administrator has checked it.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+    <section class="sec ground early" id="early" aria-labelledby="early-title" data-goal-view="Reached Early">
+    <div class="shell">
+      <p class="label">Beta</p>
+      <h2 class="d2" id="early-title" data-reveal>We are inviting early adopters.</h2>
+      <p class="lede w1" data-reveal data-copy="early-lede-en">We are inviting distilleries and wineries to use the beta as early adopters. It starts with a conversation about how many casks you have, how they are stored, how you record today and how large a start you have in mind.</p>
+      <ol class="thread" data-thread data-copy="early-steps-en">
+        <li><b>A conversation</b><span>Your casks, how they are stored, how you record today</span></li>
+        <li><b>On-site read check</b><span>Whether the tags read in your warehouse or cellar</span></li>
+        <li><b>Plan</b><span>Tag quantities and the number of devices, decided together</span></li>
+        <li><b>Purchase</b><span>You buy the tags and hardware</span></li>
+        <li><b>Rollout</b><span>In turn, as our preparations are completed</span></li>
+        <li><b>Fee-waived period</b><span>No service fee for a set period after rollout</span></li>
+      </ol>
+      <div class="program" aria-label="Terms for early adopters">
+        <div><h3>Who we are inviting</h3><p>Whisky distilleries and wineries in Japan. If you are elsewhere, please talk to us.</p></div>
+        <div><h3>What the read check covers</h3><p>In your own warehouse or cellar, we use test tags, read the same area several times and compare. If you have an Android device in mind, we test it at the same time. <span data-copy="trial-fee-en">The read check is charged, and we quote it once we know the place and the area.</span></p></div>
+        <div><h3>The kit</h3><p>RFID tags for casks, an RFID reader and an Android device. For the bottles in the lab, RFID tags for liquid-filled bottles (the bottle features are in development).</p></div>
+        <div><h3>Period and terms</h3><p><span data-copy="fee-waiver-en">For customers who have bought tags and hardware, the service fee is waived for a set period after rollout.</span> Costs are quoted separately for the service fee, tags and hardware, the read check and rollout support.</p></div>
+      </div>
+      <div class="early-cta">
+        <a class="btn" href="https://particle-design.co.jp/en/contact.html?topic=caskbarrel" data-goal="CTA Hearing Early">Talk to us</a>
+        <a class="textlink" href="early-adopter/">More for early adopters<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+    <section class="sec" id="faq" aria-labelledby="faq-title">
+    <div class="shell">
+      <h2 class="d2" id="faq-title">Frequently asked questions</h2>
+      <div class="faq">
+        <details><summary>What does beta mean?</summary><p class="answer">It is the version that early customers use while development continues. Screens and functions may change.</p></details>
+        <details><summary>When can we start?</summary><p class="answer" data-copy="faq-when-en">Conversations can start straight away. The on-site read check is scheduled after the conversation. Rollouts follow in turn as our preparations are completed.</p></details>
+        <details><summary>Can every cask be read by RFID?</summary><p class="answer" data-copy="faq-rfid-en">It depends on how the casks are stored. We check this in the on-site read check, before you buy. Racks that read poorly are managed with the QR code on the tag or the cask number, together with the location record.</p></details>
+        <details><summary>What hardware do we need?</summary><p class="answer" data-copy="faq-kit-en">RFID tags for the casks, an RFID reader, and an Android device for the handheld app. For the bottles in the lab, RFID tags for liquid-filled bottles are used (the bottle features are in development). Quantities are decided together after the conversation and the read check.</p></details>
+        <details><summary>Can we use it alongside our current ledger or production system?</summary><p class="answer" data-copy="faq-system-en">It does not replace them. It starts with stocktakes on site and checking locations. How to bring in the lists you use now, and how to connect, is decided case by case as we go through the items.</p></details>
+        <details><summary>Can it serve as our statutory records?</summary><p class="answer" data-copy="faq-ledger-en">No. It is a tool that helps you record and reconcile. Please keep your statutory records as they are.</p></details>
+        <details><summary>Does it show how a cask is maturing?</summary><p class="answer" data-copy="faq-aging-en">No. RFID is for telling casks apart and cannot measure maturation. The volume and strength you measure are kept as records.</p></details>
+        <details><summary>Does AI decide blends or predict maturation?</summary><p class="answer" data-copy="faq-ai-en">No. The decision is the blender’s.</p></details>
+        <details><summary>Can wineries use it?</summary><p class="answer" data-copy="faq-winery-en">It handles barrels and lots, topping up, transfers and barrel status. Winemaking differs from winery to winery, so we talk it through and fit the setup to yours.</p></details>
+        <details><summary>How much does it cost?</summary><p class="answer" data-copy="faq-cost-en">It depends on the number of casks and warehouses, and on the scope. We quote the service fee, tags and hardware, the read check and rollout support separately. <span data-copy="fee-waiver-en">For customers who have bought tags and hardware, the service fee is waived for a set period after rollout.</span></p></details>
+      </div>
+    </div>
+  </section>
+
+    <section class="cta-band on-navy" id="apply" aria-labelledby="apply-title">
+    <div class="shell">
+      <div data-reveal>
+        <h2 class="d2" id="apply-title" data-copy="apply-title-en"><span class="ib">Tell us where</span> <span class="ib">your casks are kept</span> <span class="ib">and how you record them.</span></h2>
+        <p class="fine" data-copy="apply-fine-en">This opens our contact form. Under Topic, please choose “CASK / BARREL (early adopter enquiry)”. If you cannot choose it, please mention “CASK / BARREL” in your message.</p>
+      </div>
+      <a class="btn w1" href="https://particle-design.co.jp/en/contact.html?topic=caskbarrel" data-goal="CTA Hearing Band" data-reveal>Talk to us<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="shell">
+    <div class="foot-top">
+      <p class="foot-brand"><svg aria-hidden="true"><use href="#cb-mark"/></svg><span>CASK / BARREL is a service of Particle design Inc.</span></p>
+      <nav class="foot-links" aria-label="Company and policies">
+        <a href="https://particle-design.co.jp/en/">Particle design Inc.</a>
+        <a href="https://particle-design.co.jp/en/products/">All products</a>
+        <a href="https://particle-design.co.jp/en/contact.html?topic=caskbarrel">Contact</a>
+        <a href="https://particle-design.co.jp/privacy-policy.html" hreflang="ja">Privacy Policy (Japanese)</a>
+      </nav>
+      <nav class="lang" aria-label="Language (footer)"><a href="../" lang="ja" hreflang="ja" data-lang="ja">日本語</a><span aria-hidden="true">/</span><b lang="en" aria-current="true">English</b></nav>
+    </div>
+    <div class="foot-notes">
+      <p data-copy="screen-note-en">Screens are shown in Japanese. All data is fictional (company names are marked “(デモ)”, meaning demo). Screens as of November 2026.</p>
+      <p data-copy="trademark-en">Product and company names are trademarks or registered trademarks of their respective owners. See also <a href="trademarks/">Trademarks</a>.</p>
+      <p>© 2026 Particle design Inc.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

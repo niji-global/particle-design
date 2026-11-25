@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="light">
+<title>Whisky distilleries | CASK / BARREL (beta)</title>
+<meta name="description" content="From one warehouse or one section, to work shared section by section. One ledger for each cask’s location and records, for the device in the warehouse and the screen in the office. Cask management for whisky distilleries, in beta.">
+<link rel="canonical" href="https://particle-design.co.jp/caskbarrel/en/distillery/">
+<link rel="alternate" hreflang="ja" href="https://particle-design.co.jp/caskbarrel/distillery/">
+<link rel="alternate" hreflang="en" href="https://particle-design.co.jp/caskbarrel/en/distillery/">
+<link rel="alternate" hreflang="x-default" href="https://particle-design.co.jp/caskbarrel/en/distillery/">
+<script src="../../../lang.js?v=1e536e42"></script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CASK / BARREL">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ja_JP">
+<meta property="og:title" content="Whisky distilleries | CASK / BARREL (beta)">
+<meta property="og:description" content="From one warehouse or one section, to work shared section by section. One ledger for each cask’s location and records, for the device in the warehouse and the screen in the office. Cask management for whisky distilleries, in beta.">
+<meta property="og:url" content="https://particle-design.co.jp/caskbarrel/en/distillery/">
+<meta property="og:image" content="https://particle-design.co.jp/caskbarrel/assets/og/og-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="CASK / BARREL. Time and records, laid down for what comes next. Part of the 3D view of a warehouse (fictional data)">
+<link rel="icon" href="../../assets/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css?v=565ba1bf">
+<link rel="stylesheet" href="../../assets/fonts/plex-sans-jp.css"><!-- 書体: IBM Plex Sans JP 3.0.0 の分割 woff2（400・600）。許諾は assets/fonts/OFL.txt -->
+<script src="../../assets/site.js?v=14826bd4"></script>
+</head>
+<body>
+
+<svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="cbMarkBg" cx="80" cy="18" r="120" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2A4468"/><stop offset=".5" stop-color="#15263D"/><stop offset="1" stop-color="#0B1626"/></radialGradient>
+    <linearGradient id="cbMarkCask" x1="36" y1="33" x2="72" y2="75" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#E8BC76"/><stop offset=".55" stop-color="#C88A3A"/><stop offset="1" stop-color="#9C6620"/></linearGradient>
+  </defs>
+  <symbol id="cb-mark" viewBox="20 14 74 74">
+    <rect x="20" y="14" width="74" height="74" rx="17" fill="url(#cbMarkBg)"/>
+    <path d="M41,33 Q54,29.5 67,33 Q74.5,54 67,75 Q54,78.5 41,75 Q33.5,54 41,33 Z" fill="url(#cbMarkCask)"/>
+    <path d="M49,31.6 Q46.6,54 49,76.4 M59,31.6 Q61.4,54 59,76.4" fill="none" stroke="#8A5A1E" stroke-opacity=".4" stroke-width="1.1" stroke-linecap="round"/>
+    <path d="M37.8,41 Q54,44.6 70.2,41 M37.8,67 Q54,70.6 70.2,67" fill="none" stroke="#15263D" stroke-width="2.8" stroke-linecap="round"/>
+    <path d="M74,27 Q81,31 82.5,39" fill="none" stroke="#F4E3C3" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M77.5,21.5 Q87.5,27 89.5,38.5" fill="none" stroke="#F4E3C3" stroke-opacity=".6" stroke-width="2.2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><path d="M12,3.75 A8.25,8.25 0 1 1 11.99,3.75 Z M12,10.9 V16.4 M12,7.7 L12,7.75"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5,12 H18.5 M13.5,7 L18.5,12 L13.5,17"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12,5 V18.5 M7,13.5 L12,18.5 L17,13.5"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><path d="M6.75,10.75 H17.25 Q18.25,10.75 18.25,11.75 V19 Q18.25,20 17.25,20 H6.75 Q5.75,20 5.75,19 V11.75 Q5.75,10.75 6.75,10.75 Z M8.75,10.75 V8 A3.25,3.25 0 0 1 15.25,8 V10.75 M12,14.4 V16.4"/></symbol>
+  <symbol id="i-device" viewBox="0 0 24 24"><path d="M8,3.75 H16 Q17.25,3.75 17.25,5 V19 Q17.25,20.25 16,20.25 H8 Q6.75,20.25 6.75,19 V5 Q6.75,3.75 8,3.75 Z M10.5,17.25 H13.5"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><path d="M4.75,20.25 V8.5 L9.5,5.75 V20.25 M9.5,20.25 V3.75 L19.25,7 V20.25 M3.5,20.25 H20.5 M12.25,9.5 H16.5 M12.25,12.75 H16.5 M12.25,16 H16.5"/></symbol>
+  <symbol id="i-history" viewBox="0 0 24 24"><path d="M4.75,12 A7.25,7.25 0 1 0 6.9,6.85 M4.4,4.6 L4.75,8.1 L8.25,7.75 M12,8 V12.3 L14.9,14.2"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4.5,7 H19.5 M4.5,12 H19.5 M4.5,17 H19.5"/></symbol>
+</svg>
+
+
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="corp-bar" aria-label="Company site">
+  <div class="shell"><a href="https://particle-design.co.jp/en/products/"><span aria-hidden="true">←</span> All products from Particle design</a></div>
+</nav>
+
+<header class="site-header">
+  <div class="shell">
+    <a class="brand" href="../" aria-label="CASK / BARREL home">
+      <svg aria-hidden="true"><use href="#cb-mark"/></svg>
+      <span class="wordmark">CASK / BARREL</span>
+    </a>
+    <span class="badge">Beta</span>
+    <nav class="nav" aria-label="Site">
+      <a href="../distillery/" aria-current="page">Distilleries</a>
+      <a href="../winery/">Wineries</a>
+      <a href="../lab/">Blending Lab</a>
+      <a href="../#faq">FAQ</a>
+    </nav>
+    <nav class="lang" aria-label="Language"><a href="../../distillery/" lang="ja" hreflang="ja" data-lang="ja">日本語</a><span aria-hidden="true">/</span><b lang="en" aria-current="true">English</b></nav>
+    <a class="btn small header-cta" href="https://particle-design.co.jp/en/contact.html?topic=caskbarrel" data-goal="CTA Hearing Header"><span class="long">Talk to us</span><span class="short">Talk to us</span></a>
+    <details class="menu">
+      <summary aria-label="Menu"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></summary>
+      <div class="menu-panel">
+        <nav class="lang" aria-label="Language (menu)"><a href="../../distillery/" lang="ja" hreflang="ja" data-lang="ja">日本語</a><span aria-hidden="true">/</span><b lang="en" aria-current="true">English</b></nav>
+        <nav aria-label="Site (menu)">
+          <a href="../distillery/" aria-current="page">Distilleries</a>
+          <a href="../winery/">Wineries</a>
+          <a href="../lab/">Blending Lab</a>
+          <a href="../early-adopter/">Early adopters</a>
+          <a href="../#faq">FAQ</a>
+        </nav>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero sub on-navy" id="top" aria-labelledby="page-title">
+    <div class="shell sub-grid">
+      <div>
+        <p class="kicker fx">Whisky distilleries</p>
+        <h1 class="d2" id="page-title"><span class="ib">From one warehouse or section,</span> <span class="ib">to work shared by section.</span></h1>
+        <p class="lead fx w2">Each cask’s location, fill date, measurements and transfers, in one ledger for the device in the warehouse and the screen in the office. It does not replace the systems you use now.</p>
+        <div class="actions fx w5">
+          <a class="btn" href="https://particle-design.co.jp/en/contact.html?topic=caskbarrel" data-goal="CTA Hearing Segment">Talk to us</a>
+        </div>
+      </div>
+      <div class="fx w7">
+        <figure class="shot shot-web"><div class="frame"><picture><source media="(max-width:599px)" srcset="../../assets/screens/s06-places-m.webp" width="1200" height="943"><img src="../../assets/screens/s06-places-1920.webp" srcset="../../assets/screens/s06-places-960.webp 960w, ../../assets/screens/s06-places-1920.webp 1920w" sizes="(max-width:899px) 92vw, 620px" width="1920" height="911" alt="Locations screen, with the number of casks on each rack in a warehouse and a list of the casks there (screen in Japanese, fictional data)" fetchpriority="high" decoding="async"></picture></div><figcaption data-copy="screen-note-en">Screens are shown in Japanese. All data is fictional (company names are marked “(デモ)”, meaning demo). Screens as of November 2026.</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="small" aria-labelledby="small-title">
+    <div class="shell">
+      <p class="label">From one warehouse or section</p>
+      <h2 class="d2" id="small-title" data-reveal><span class="ib">On stocktake days,</span> <span class="ib">and on days you look for a cask.</span></h2>
+      <p class="lede w1" data-reveal>Where a long-untouched cask sits may be recorded in one person’s memory and a spreadsheet, and nowhere else. Even in a warehouse like that, the ledger can build up alongside the usual work of moving, counting and measuring.</p>
+      <article class="scene" data-reveal>
+        <div class="scene-text">
+          <h3>Count as you walk the racks</h3>
+          <p>Walk the aisle with the RFID reader and it picks up the tags on the casks as you go. The count of casks read rises as you walk, and the casks not yet read stay on the list.</p>
+          <p class="note"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg><span data-copy="rfid-note-en">How far and how reliably tags read depends on the tag and on how the casks are stored.</span></p>
+        </div>
+        <figure class="shot shot-device"><div class="frame"><img src="../../assets/screens/s17-stocktake-720.webp" srcset="../../assets/screens/s17-stocktake-360.webp 360w, ../../assets/screens/s17-stocktake-720.webp 720w" sizes="232px" width="720" height="972" alt="Stocktake screen in the handheld app, with the number of casks read inside a ring gauge (screen in Japanese, fictional data)" loading="lazy" decoding="async"></div><figcaption>The count of casks read rises as you walk.</figcaption></figure>
+      </article>
+      <article class="scene" data-reveal>
+        <div class="scene-text">
+          <h3>Find a cask by getting closer</h3>
+          <p>Pick a cask by number or from the list, and walk with the RFID reader pointed ahead. The closer you get, the higher the reading on screen and the faster the beep.</p>
+        </div>
+        <figure class="shot shot-device near"><div class="frame"><video controls preload="none" playsinline poster="../../assets/screens/v1-find-poster.webp" width="720" height="734" aria-label="Screen recording of finding a cask in the handheld app (screen in Japanese, fictional data). As you get closer, the proximity reading rises and the ring narrows, and a message says the cask has been found. There is no sound"><source src="../../assets/screens/v1-find.mp4" type="video/mp4"></video></div><figcaption>The closer you get, the higher the reading and the faster the beep.</figcaption></figure>
+      </article>
+      <article class="scene" data-reveal>
+        <div class="scene-text">
+          <h3>Enter a measurement once, at the cask</h3>
+          <p>Volume and strength go into the handheld app, right at the cask. They reach the screen in the office with the method and the time.</p>
+        </div>
+        <figure class="shot shot-device"><div class="frame"><img src="../../assets/screens/s20-cask-720.webp" srcset="../../assets/screens/s20-cask-360.webp 360w, ../../assets/screens/s20-cask-720.webp 720w" sizes="232px" width="720" height="1295" alt="Cask screen in the handheld app, showing the volume and what it is based on, with a record button below (screen in Japanese, fictional data)" loading="lazy" decoding="async"></div><figcaption>Opened from the QR code on a cask label. Record on the spot, at the cask.</figcaption></figure>
+      </article>
+      <article class="scene" data-reveal>
+        <div class="scene-text">
+          <h3>Whoever takes over can read it back</h3>
+          <p>Fill date, measurements, transfers and samples drawn line up for each cask.</p>
+        </div>
+        <figure class="shot shot-web"><div class="frame"><picture><source media="(max-width:599px)" srcset="../../assets/screens/s04-cask-history-m.webp" width="1200" height="979"><img src="../../assets/screens/s04-cask-history-1920.webp" srcset="../../assets/screens/s04-cask-history-960.webp 960w, ../../assets/screens/s04-cask-history-1920.webp 1920w" sizes="(max-width:899px) 92vw, 620px" width="1920" height="1224" alt="Cask history, with records of sampling, measurement and filling, newest at the top (screen in Japanese, fictional data)" loading="lazy" decoding="async"></picture></div><figcaption>Fill date, measurements, transfers and samples drawn line up for each cask.</figcaption></figure>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec ground" id="share" aria-labelledby="share-title">
+    <div class="shell">
+      <p class="label">Shared by section</p>
+      <h2 class="d2" id="share-title" data-reveal><span class="ib">Stocktakes split by section,</span> <span class="ib">with a reason for each discrepancy.</span></h2>
+      <p class="lede w1" data-reveal>As warehouses and sections are added, stocktakes can still be split by section on the same ledger.</p>
+      <article class="scene" data-reveal>
+        <div class="scene-text">
+          <h3>Set up a stocktake for each section</h3>
+          <p>In the office portal, choose the section to count and the device to read with, and set up a stocktake. With a stocktake for each section, the work can be shared between people.</p>
+        </div>
+        <figure class="shot shot-web"><div class="frame"><picture><source media="(max-width:599px)" srcset="../../assets/screens/s08-stocktake-plan-m.webp" width="695" height="775"><img src="../../assets/screens/s08-stocktake-plan-1920.webp" srcset="../../assets/screens/s08-stocktake-plan-960.webp 960w, ../../assets/screens/s08-stocktake-plan-1920.webp 1920w" sizes="(max-width:899px) 92vw, 620px" width="1920" height="911" alt="Stocktake screen, with stocktakes listed on the left and the result of the selected one on the right (screen in Japanese, fictional data)" loading="lazy" decoding="async"></picture></div><figcaption>Stocktakes are listed in order of date.</figcaption></figure>
+      </article>
+      <article class="scene" data-reveal>
+        <div class="scene-text">
+          <h3>A reason for each cask not found</h3>
+          <p>A cask that was not found, or was in a different place, is given a reason on the device in the warehouse or in the office portal. The person responsible signs it off in the office portal. Corrections and cancellations stay in the history, each with its reason.</p>
+        </div>
+        <figure class="shot shot-web"><div class="frame"><picture><source media="(max-width:599px)" srcset="../../assets/screens/s09-stocktake-reasons-m.webp" width="1200" height="624"><img src="../../assets/screens/s09-stocktake-reasons-1920.webp" srcset="../../assets/screens/s09-stocktake-reasons-960.webp 960w, ../../assets/screens/s09-stocktake-reasons-1920.webp 1920w" sizes="(max-width:899px) 92vw, 620px" width="1920" height="1142" alt="Stocktake discrepancies and reasons, with a reason given for a cask that was not found (screen in Japanese, fictional data)" loading="lazy" decoding="async"></picture></div><figcaption>A cask not found is given a reason and signed off by the person responsible.</figcaption></figure>
+      </article>
+      <article class="scene" data-reveal>
+        <div class="scene-text">
+          <h3>See the warehouse as a plan and in 3D</h3>
+          <p>See the layout of the rows as a plan, and the racks down to each tier in 3D. The colour of a cask shows its status (filled, empty, or to be checked).</p>
+        </div>
+        <figure class="shot shot-web"><div class="frame"><picture><source media="(max-width:599px)" srcset="../../assets/screens/s07-places-3d-m.webp" width="1200" height="612"><img src="../../assets/screens/s07-places-3d-1920.webp" srcset="../../assets/screens/s07-places-3d-960.webp 960w, ../../assets/screens/s07-places-3d-1920.webp 1920w" sizes="(max-width:899px) 92vw, 620px" width="1920" height="1004" alt="Three-dimensional view of the warehouse, with casks on racks inside the building (screen in Japanese, fictional data)" loading="lazy" decoding="async"></picture></div><figcaption>A view of the warehouse in 3D.</figcaption></figure>
+      </article>
+      <article class="scene" data-reveal>
+        <div class="scene-text">
+          <h3>To write from the warehouse, a device must be approved</h3>
+          <p>New devices and RFID readers can be used once an administrator has checked them. You sign in to the office portal with two-step verification.</p>
+        </div>
+        <figure class="shot shot-web"><div class="frame"><picture><source media="(max-width:599px)" srcset="../../assets/screens/s12-device-approval-m.webp" width="1200" height="449"><img src="../../assets/screens/s12-device-approval-1500.webp" srcset="../../assets/screens/s12-device-approval-960.webp 960w, ../../assets/screens/s12-device-approval-1500.webp 1500w" sizes="(max-width:899px) 92vw, 620px" width="1500" height="674" alt="Device approval screen, with a field for the device name and a button to approve the device (screen in Japanese, fictional data)" loading="lazy" decoding="async"></picture></div><figcaption>A new device can be used once an administrator has checked it.</figcaption></figure>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec" id="tagging" aria-labelledby="tagging-title">
+    <div class="shell">
+      <p class="label">Tagging</p>
+      <h2 class="d2" id="tagging-title" data-reveal><span class="ib">Linking a tag to a cask</span> <span class="ib">takes one confirmation.</span></h2>
+      <ol class="thread" data-thread>
+        <li><b>Choose the cask</b><span>From the list, the cask to be tagged</span></li>
+        <li><b>Read the QR code</b><span>On the face of the tag, with the RFID reader</span></li>
+        <li><b>Link</b><span>Confirm once. If it was a mistake, undo it on the spot</span></li>
+      </ol>
+      <article class="scene" data-reveal>
+        <div class="scene-text">
+          <h3>Read the tag’s QR code, confirm once</h3>
+          <p>Choose the cask to be tagged from the list, read the QR code on the face of the tag with the RFID reader, and press confirm once. If it was a mistake, undo it on the spot.</p>
+        </div>
+        <figure class="shot"><div class="tag-box"><img src="../../assets/photos/p2-cask-tag-1200.webp" srcset="../../assets/photos/p2-cask-tag-600.webp 600w, ../../assets/photos/p2-cask-tag-1200.webp 1200w" sizes="(max-width:899px) 84vw, 560px" width="1200" height="347" alt="Photo of a white, oblong RFID tag for casks, with a QR code printed on the left" loading="lazy" decoding="async"></div><figcaption>RFID tag for casks. One goes on each cask.</figcaption></figure>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec ground" id="points" aria-labelledby="points-title">
+    <div class="shell">
+      <p class="label">What it comes down to</p>
+      <h2 class="d2" id="points-title" data-reveal><span class="ib">The systems you use now</span> <span class="ib">stay as they are.</span></h2>
+      <ul class="plain points" data-reveal>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-building"/></svg><span>It does not replace your current ledger or production system. It starts with stocktakes on site and checking locations.</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-device"/></svg><span>Start with one warehouse or one section, and widen to work shared by section.</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-history"/></svg><span>Whether tags can be read is checked before you buy, in an on-site read check in your own warehouse.</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg><span>Records are corrected without being erased, and the reason is kept too.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec page-faq" id="faq" aria-labelledby="faq-title">
+    <div class="shell">
+      <h2 class="d2" id="faq-title">Frequently asked questions</h2>
+      <div class="faq">
+        <details><summary>Can every cask be read by RFID?</summary><p class="answer" data-copy="faq-rfid-en">It depends on how the casks are stored. We check this in the on-site read check, before you buy. Racks that read poorly are managed with the QR code on the tag or the cask number, together with the location record.</p></details>
+        <details><summary>Can we use it alongside our current ledger or production system?</summary><p class="answer" data-copy="faq-system-en">It does not replace them. It starts with stocktakes on site and checking locations. How to bring in the lists you use now, and how to connect, is decided case by case as we go through the items.</p></details>
+        <details><summary>Can it serve as our statutory records?</summary><p class="answer" data-copy="faq-ledger-en">No. It is a tool that helps you record and reconcile. Please keep your statutory records as they are.</p></details>
+        <details><summary>Does it show how a cask is maturing?</summary><p class="answer" data-copy="faq-aging-en">No. RFID is for telling casks apart and cannot measure maturation. The volume and strength you measure are kept as records.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band on-navy" id="apply" aria-labelledby="apply-title">
+    <div class="shell">
+      <div data-reveal>
+        <h2 class="d2" id="apply-title" data-copy="apply-title-en"><span class="ib">Tell us where</span> <span class="ib">your casks are kept</span> <span class="ib">and how you record them.</span></h2>
+        <p class="fine" data-copy="apply-fine-en">This opens our contact form. Under Topic, please choose “CASK / BARREL (early adopter enquiry)”. If you cannot choose it, please mention “CASK / BARREL” in your message.</p>
+      </div>
+      <a class="btn w1" href="https://particle-design.co.jp/en/contact.html?topic=caskbarrel" data-goal="CTA Hearing Segment" data-reveal>Talk to us<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="shell">
+    <div class="foot-top">
+      <p class="foot-brand"><svg aria-hidden="true"><use href="#cb-mark"/></svg><span>CASK / BARREL is a service of Particle design Inc.</span></p>
+      <nav class="foot-links" aria-label="Company and policies">
+        <a href="https://particle-design.co.jp/en/">Particle design Inc.</a>
+        <a href="https://particle-design.co.jp/en/products/">All products</a>
+        <a href="https://particle-design.co.jp/en/contact.html?topic=caskbarrel">Contact</a>
+        <a href="https://particle-design.co.jp/privacy-policy.html" hreflang="ja">Privacy Policy (Japanese)</a>
+      </nav>
+      <nav class="lang" aria-label="Language (footer)"><a href="../../distillery/" lang="ja" hreflang="ja" data-lang="ja">日本語</a><span aria-hidden="true">/</span><b lang="en" aria-current="true">English</b></nav>
+    </div>
+    <div class="foot-notes">
+      <p data-copy="screen-note-en">Screens are shown in Japanese. All data is fictional (company names are marked “(デモ)”, meaning demo). Screens as of November 2026.</p>
+      <p data-copy="trademark-en">Product and company names are trademarks or registered trademarks of their respective owners. See also <a href="../trademarks/">Trademarks</a>.</p>
+      <p>© 2026 Particle design Inc.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

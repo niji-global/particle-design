@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product ｜ Particle design株式会社</title>
+<meta name="description" content="Particle design株式会社が自社で開発しているサービスの一覧です。">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://particle-design.co.jp/products/">
+<link rel="alternate" hreflang="ja" href="https://particle-design.co.jp/products/">
+<link rel="alternate" hreflang="en" href="https://particle-design.co.jp/en/products/">
+<link rel="alternate" hreflang="x-default" href="https://particle-design.co.jp/en/products/">
+<script src="/lang.js?v=1e536e42"></script>
+<meta name="theme-color" content="#111111">
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="apple-touch-icon" href="../favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Particle design株式会社">
+<meta property="og:title" content="Product ｜ Particle design株式会社">
+<meta property="og:description" content="Particle design株式会社が自社で開発しているサービスの一覧です。">
+<meta property="og:url" content="https://particle-design.co.jp/products/">
+<meta property="og:image" content="https://particle-design.co.jp/ogp.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:locale:alternate" content="en_US">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css?v=20261125">
+<style>
+  /* Product index — quiet document layout on the same design system */
+  .legal-wrap { max-width: 64rem; margin-inline: auto; padding-block: clamp(7rem, 12vh, 10rem) clamp(4rem, 9vh, 7rem); }
+  .legal-back {
+    position: fixed; top: clamp(1.2rem, 3vw, 2rem); left: var(--gutter); z-index: 50;
+    display: inline-flex; align-items: center; gap: .6em;
+    font-size: .82rem; letter-spacing: .04em; color: var(--ink-soft);
+    background: rgba(255,255,255,.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--line); border-radius: var(--radius);
+    padding: .6em 1.1em; cursor: pointer; text-decoration: none;
+    transition: color .3s ease, border-color .3s ease, background .3s ease;
+  }
+  .legal-back:hover { color: var(--ink); border-color: var(--line-mid); background: rgba(255,255,255,.95); }
+  .legal-back .arrow { transition: transform .3s ease; }
+  .legal-back:hover .arrow { transform: translateX(-4px); }
+
+  .legal-head { margin-bottom: clamp(2.6rem, 5vw, 4rem); }
+  .legal-head .eyebrow { justify-content: flex-start; }
+  .legal-head h1 {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(1.9rem, 4vw, 2.9rem); line-height: 1.4; letter-spacing: -0.02em; margin: 0; color: var(--ink);
+  }
+</style>
+</head>
+<body>
+
+<a class="legal-back" id="backBtn" href="/"><span class="arrow">←</span>戻る</a>
+<nav class="lang legal-lang" aria-label="言語"><b lang="ja" aria-current="true">日本語</b><span aria-hidden="true">/</span><a href="/en/products/" lang="en" hreflang="en" data-lang="en">English</a></nav>
+
+<main>
+  <div class="shell legal-wrap">
+    <div class="legal-head">
+      <p class="eyebrow">Product</p>
+      <h1 class="product-title">自社で開発しているサービス</h1>
+    </div>
+
+    <ul class="product-list">
+        <li class="product-card">
+          <div class="product-body">
+            <span class="product-tag">ベータ版</span>
+            <h2 class="product-name">CASK / BARREL</h2>
+            <p class="product-kind">ウイスキー蒸溜所とワイナリーのための、樽の管理サービス</p>
+            <p class="product-desc">樽1本ごとの置き場所・中身・測った値を、現場の端末と事務所の画面で1つの台帳にし、ブレンダーの試飲と試作の記録までつなげます。</p>
+            <a class="product-go" href="/caskbarrel/">CASK / BARREL のサイトを見る <span class="arrow" aria-hidden="true">→</span></a>
+          </div>
+          <div class="product-shot"><img src="cask-barrel.webp" width="1200" height="576" alt="貯蔵庫の通路から見た3D表示。左右の棚に樽が並んでいる"></div>
+        </li>
+    </ul>
+    <p class="product-note">製品の画面（貯蔵庫の3D表示の一部）。架空のデータです。</p>
+  </div>
+</main>
+
+</body>
+</html>

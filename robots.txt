@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /lang.js
 
 Sitemap: https://particle-design.co.jp/sitemap.xml

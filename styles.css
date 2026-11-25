@@ -752,3 +752,86 @@ main,
 @media (min-width: 768px) {
   .pc-break { display: inline; }
 }
+
+/* ============================================================
+   Language switch — 日本語 / English（header・footer・右上）
+   ============================================================ */
+.lang {
+  display: flex; align-items: center; gap: .45rem;
+  font-size: .8rem; color: var(--line-mid); white-space: nowrap;
+}
+.lang a,
+.lang b {
+  display: inline-flex; align-items: center; min-height: 44px;
+  font-weight: 400; color: var(--muted); text-decoration: none;
+}
+.lang a:hover { color: var(--ink); }
+.lang b {
+  font-weight: 500; color: var(--ink);
+  text-decoration: underline; text-underline-offset: .45em; text-decoration-thickness: 1px;
+}
+.lang a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.header-inner .lang { margin-left: clamp(1rem, 1.8vw, 1.8rem); }
+@media (min-width: 901px) { .header-inner .nav { margin-left: auto; } }
+@media (min-width: 901px) and (max-width: 1120px) { .nav { gap: 1rem; } }
+@media (max-width: 900px) { .header-inner .lang { margin-left: auto; margin-right: .75rem; } }
+/* ヘッダーの無いページ（「戻る」と同じ高さの右上） */
+.legal-lang { position: absolute; top: clamp(1.2rem, 3vw, 2rem); right: var(--gutter); z-index: 50; }
+@media (max-width: 359px) { .legal-lang { top: 4.2rem; } }
+
+/* ============================================================
+   Product — one card per product
+   ============================================================ */
+.product-section { padding-top: 0; scroll-margin-top: 7rem; }
+.product-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 2rem; }
+.product-card {
+  position: relative;
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  background: #fff;
+  border: 1px solid var(--line-mid); border-radius: var(--radius);
+  transition: border-color .3s ease;
+}
+.product-card:hover,
+.product-card:focus-within { border-color: var(--ink); }
+.product-body { display: flex; flex-direction: column; align-items: flex-start; padding: clamp(2rem, 4vw, 3.5rem); }
+.product-tag {
+  font-size: .75rem; letter-spacing: .04em; color: var(--ink-soft);
+  border: 1px solid var(--line-mid); border-radius: 999px;
+  padding: .15rem .8rem;
+}
+.product-name { font-weight: 500; font-size: clamp(1.5rem, 2.3vw, 1.9rem); line-height: 1.4; letter-spacing: .06em; margin: 1.4rem 0 .5rem; }
+.product-title,
+.product-section .section-title { word-break: auto-phrase; }
+.product-kind,
+.product-desc { word-break: auto-phrase; line-break: strict; text-wrap: pretty; }
+.product-kind { margin: 0; font-size: 1rem; line-height: 1.7; }
+.product-desc { margin: 1rem 0 2.2rem; font-size: .9rem; line-height: 1.8; color: var(--muted); }
+.product-go {
+  margin-top: auto;
+  display: inline-flex; align-items: center; gap: .5em; min-height: 44px;
+  font-size: .9rem; font-weight: 500; color: var(--ink); text-decoration: none;
+}
+.product-go::after { content: ""; position: absolute; inset: 0; }   /* カード全体を1つのリンクにする */
+.product-go:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+.product-go .arrow { transition: transform .35s ease; }
+.product-card:hover .arrow { transform: translateX(4px); }
+.product-shot { position: relative; min-height: 25rem; overflow: hidden; background: #15263d; }
+.product-shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.product-note { margin: .9rem 0 0; font-size: .75rem; color: var(--muted); }
+@media (max-width: 900px) {
+  .product-card { grid-template-columns: 1fr; }
+  .product-shot { order: -1; min-height: 0; aspect-ratio: 16 / 10; }
+}
+
+/* ============================================================
+   English pages — 日本語より文が長いので、幅と改行を合わせる
+   ============================================================ */
+html[lang="en"] .hero-inner { max-width: var(--shell); }
+html[lang="en"] .hero h1,
+html[lang="en"] h2 { text-wrap: balance; }
+html[lang="en"] .hero-sub br,
+html[lang="en"] .pc-break { display: none; }
+@media (max-width: 560px) {
+  html[lang="en"] h2 br { display: none; }
+  html[lang="en"] .hero { padding-block: 6.5rem 9.5rem; }   /* ヘッダーと「Scroll」の印に重ならないように */
+}
