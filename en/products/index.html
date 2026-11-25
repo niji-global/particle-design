@@ -43,6 +43,7 @@
   .legal-back:hover { color: var(--ink); border-color: var(--line-mid); background: rgba(255,255,255,.95); }
   .legal-back .arrow { transition: transform .3s ease; }
   .legal-back:hover .arrow { transform: translateX(-4px); }
+  @media (max-width:767px){ .legal-back { position: absolute; } } /* 狭い幅では見出しに重なるので、付いてこない */
 
   .legal-head { margin-bottom: clamp(2.6rem, 5vw, 4rem); }
   .legal-head .eyebrow { justify-content: flex-start; }
