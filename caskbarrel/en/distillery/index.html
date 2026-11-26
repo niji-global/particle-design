@@ -25,7 +25,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="CASK / BARREL. Time and records, laid down for what comes next. Part of the 3D view of a warehouse (fictional data)">
 <link rel="icon" href="../../assets/mark.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../../assets/site.css?v=f1203bca">
+<link rel="stylesheet" href="../../assets/site.css?v=02917213">
 <link rel="stylesheet" href="../../assets/fonts/plex-sans-jp.css"><!-- 書体: IBM Plex Sans JP 3.0.0 の分割 woff2（400・600）。許諾は assets/fonts/OFL.txt -->
 <script src="../../assets/site.js?v=787ee188"></script>
 </head>
@@ -99,7 +99,7 @@
       <div>
         <p class="kicker fx">Whisky distilleries</p>
         <h1 class="d2" id="page-title"><span class="ib">From one warehouse or section,</span> <span class="ib">to work shared by section.</span></h1>
-        <p class="lead fx w2">Each cask’s location, fill date, measurements and transfers, in one ledger for the device in the warehouse and the screen in the office. It does not replace the systems you use now.</p>
+        <p class="lead fx w2"><span class="sen">CASK / BARREL, from Particle&nbsp;design&nbsp;Inc., is a cask management service that lets whisky distilleries check each cask’s location, stocktake results, and measured volume and strength in the warehouse.</span> <span class="sen">Fill dates and transfers go into the same ledger, shared by the device in the warehouse and the screen in the office. It does not replace the systems you use now.</span></p>
         <div class="actions fx w5">
           <a class="btn" href="https://particle-design.co.jp/en/contact.html?topic=caskbarrel" data-goal="CTA Hearing Segment">Talk to us</a>
         </div>
@@ -115,25 +115,31 @@
       <p class="label">From one warehouse or section</p>
       <h2 class="d2" id="small-title" data-reveal><span class="ib">On stocktake days,</span> <span class="ib">and on days you look for a cask.</span></h2>
       <p class="lede w1" data-reveal>Where a long-untouched cask sits may be recorded in one person’s memory and a spreadsheet, and nowhere else. Even in a warehouse like that, the ledger can build up alongside the usual work of moving, counting and measuring.</p>
+      <ol class="thread" data-thread>
+        <li><b>Identify</b><span>A tag on each cask tells you which cask it is</span></li>
+        <li><b>Stocktake</b><span>Walk the aisle and read the tags in bulk</span></li>
+        <li><b>Check the rest</b><span>Casks not read are checked by the QR code on the tag or the cask number</span></li>
+        <li><b>Measure and record</b><span>People measure volume and strength, and record them in the handheld app</span></li>
+      </ol>
       <article class="scene" data-reveal>
         <div class="scene-text">
           <h3>Count as you walk the racks</h3>
           <p>Walk the aisle with the RFID reader and it picks up the tags on the casks as you go. The count of casks read rises as you walk, and the casks not yet read stay on the list.</p>
-          <p class="note"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg><span data-copy="rfid-note-en">How far and how reliably tags read depends on the tag and on how the casks are stored.</span></p>
+          <p class="note"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg><span data-copy="rfid-note-en">How far and how reliably tags read depends on the tag and on how the casks are&nbsp;stored.</span></p>
         </div>
         <figure class="shot shot-device"><div class="frame"><img src="../../assets/screens/s17-stocktake-720-en.webp" srcset="../../assets/screens/s17-stocktake-360-en.webp 360w, ../../assets/screens/s17-stocktake-720-en.webp 720w" sizes="232px" width="720" height="972" alt="Stocktake screen in the handheld app, with the number of casks read inside a ring gauge (screen translated into English, fictional data)" loading="lazy" decoding="async"></div><figcaption>The count of casks read rises as you walk.</figcaption></figure>
       </article>
       <article class="scene" data-reveal>
         <div class="scene-text">
           <h3>Find a cask by getting closer</h3>
-          <p>Pick a cask by number or from the list, and walk with the RFID reader pointed ahead. The closer you get, the higher the reading on screen and the faster the beep.</p>
+          <p>For a cask that was not read, or any cask you want to find, pick it by number or from the list and walk with the RFID reader pointed ahead. The closer you get, the higher the reading on screen and the faster the beep. Where tags are hard to read, casks are checked with the QR code on the tag or the cask number, together with the location record.</p>
         </div>
         <figure class="shot shot-device near"><div class="frame"><img src="../../assets/screens/s18-find-near-en.webp" width="720" height="700" alt="Find screen on the handheld app. Rings close in as you get nearer to the cask (screen translated into English, fictional data)" loading="lazy" decoding="async"></div><figcaption>The closer you get, the higher the reading and the faster the beep.</figcaption></figure>
       </article>
       <article class="scene" data-reveal>
         <div class="scene-text">
           <h3>Enter a measurement once, at the cask</h3>
-          <p>Volume and strength go into the handheld app, right at the cask. They reach the screen in the office with the method and the time.</p>
+          <p>Volume and strength are measured by people and entered in the handheld app, right at the cask. RFID tells casks apart; it does not measure what is inside. The values reach the screen in the office with the method and the time.</p>
         </div>
         <figure class="shot shot-device"><div class="frame"><img src="../../assets/screens/s20-cask-720-en.webp" srcset="../../assets/screens/s20-cask-360-en.webp 360w, ../../assets/screens/s20-cask-720-en.webp 720w" sizes="232px" width="720" height="1295" alt="Cask screen in the handheld app, showing the volume and what it is based on, with a record button below (screen translated into English, fictional data)" loading="lazy" decoding="async"></div><figcaption>Opened from the QR code on a cask label. Record on the spot, at the cask.</figcaption></figure>
       </article>
@@ -223,6 +229,7 @@
         <details><summary>Can we use it alongside our current ledger or production system?</summary><p class="answer" data-copy="faq-system-en">It does not replace them. It starts with stocktakes on site and checking locations. How to bring in the lists you use now, and how to connect, is decided case by case as we go through the items.</p></details>
         <details><summary>Can it serve as our statutory records?</summary><p class="answer" data-copy="faq-ledger-en">No. It is a tool that helps you record and reconcile. Please keep your statutory records as they are.</p></details>
         <details><summary>Does it show how a cask is maturing?</summary><p class="answer" data-copy="faq-aging-en">No. RFID is for telling casks apart and cannot measure maturation. The volume and strength you measure are kept as records.</p></details>
+        <details><summary>How much does it cost?</summary><p class="answer"><span data-copy="trial-fee-en">The read check is charged, and we quote it once we know the place and the area.</span> <span data-copy="fee-waiver-en">For customers who have bought tags and hardware, the service fee is waived for a set period after rollout.</span> What you can try in the beta, and how costs are split, is set out on the <a href="../early-adopter/#beta">early adopters</a> page.</p></details>
       </div>
     </div>
   </section>

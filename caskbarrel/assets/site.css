@@ -153,6 +153,7 @@ svg{flex:none}
 .ln{display:block;overflow:hidden;padding-block:.05em}
 .ln>span{display:inline-block}
 .hero .lead{margin:20px auto 0;max-width:35em;font-size:clamp(16px,1.35vw,18px);color:var(--on-soft)}
+.lead>.sen{display:block}/* 説明の1文目（会社と製品）と次の文は、別の行から */
 .actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:30px}
 .ruler{margin-top:clamp(36px,4.2vw,58px)}
 .ruler-in{position:relative;height:66px}
@@ -368,7 +369,7 @@ picture{display:block}
 .thread li::before{content:"";position:absolute;left:0;top:0;width:13px;height:13px;border-radius:50%;background:var(--amber);transition:background .4s}
 .thread li:not(:last-child)::after{content:"";position:absolute;left:13px;right:0;top:5.75px;height:1.5px;background:linear-gradient(var(--amber),var(--amber)) no-repeat left/100% 100%,var(--line2);transition:background-size .7s var(--ease2)}
 .thread b{display:block;font-weight:600;font-size:17px;letter-spacing:.04em;color:var(--navy)}
-.thread span{display:block;margin-top:6px;font-size:15px;line-height:1.75;color:var(--ink2)}
+.thread li>span{display:block;margin-top:6px;font-size:15px;line-height:1.75;color:var(--ink2);text-wrap:balance}
 @media (max-width:899px){
   .thread{grid-auto-flow:row;margin-top:36px}
   .thread li{padding:0 0 28px 34px}
