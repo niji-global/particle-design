@@ -51,6 +51,19 @@
     font-family: var(--serif); font-weight: 300;
     font-size: clamp(1.9rem, 4vw, 2.9rem); line-height: 1.4; letter-spacing: -0.02em; margin: 0; color: var(--ink);
   }
+
+  /* カードの2本目のリンク（区分のページ）。カード全体のリンクの上に出す */
+  .product-sub {
+    position: relative; z-index: 1;
+    display: inline-flex; align-items: center; min-height: 44px;
+    font-size: .9rem; color: var(--ink-soft); text-underline-offset: .3em;
+    transition: color .3s ease;
+  }
+  .product-sub:hover { color: var(--ink); }
+  .product-sub:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+  /* 説明の1文目（会社名）と次の文は、別の行から。日本語の句は途中で折らない */
+  .product-desc > span { display: block; }
+  .product-desc .ib { display: inline-block; }
 </style>
 </head>
 <body>
@@ -71,8 +84,9 @@
             <span class="product-tag">ベータ版</span>
             <h2 class="product-name">CASK / BARREL</h2>
             <p class="product-kind">ウイスキー蒸溜所とワイナリーのための、樽の管理サービス</p>
-            <p class="product-desc">樽1本ごとの置き場所・中身・測った値を、現場の端末と事務所の画面で1つの台帳にし、ブレンダーの試飲と試作の記録までつなげます。</p>
+            <p class="product-desc"><span><span class="ib">Particle design株式会社が</span><span class="ib">開発・提供している、</span><span class="ib">樽の管理サービスです。</span></span><span>樽1本ごとの置き場所・中身・測った値を、現場の端末と事務所の画面で1つの台帳にし、ブレンダーの試飲と試作の記録までつなげます。</span></p>
             <a class="product-go" href="/caskbarrel/">CASK / BARREL のサイトを見る <span class="arrow" aria-hidden="true">→</span></a>
+            <a class="product-sub" href="/caskbarrel/distillery/">ウイスキー蒸溜所の方へ</a>
           </div>
           <div class="product-shot"><img src="cask-barrel.webp" width="1200" height="576" alt="貯蔵庫の通路から見た3D表示。左右の棚に樽が並んでいる"></div>
         </li>

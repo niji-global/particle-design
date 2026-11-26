@@ -25,7 +25,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="CASK / BARREL。積み重ねる時間と記録は、未来の価値をつくる。管理ポータルのホームの画面（架空のデータ）">
 <link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../assets/site.css?v=f1203bca">
+<link rel="stylesheet" href="../assets/site.css?v=02917213">
 <link rel="stylesheet" href="../assets/fonts/plex-sans-jp.css"><!-- 書体: IBM Plex Sans JP 3.0.0 の分割 woff2（400・600）。許諾は assets/fonts/OFL.txt -->
 <script src="../assets/site.js?v=787ee188"></script>
 </head>
@@ -99,7 +99,7 @@
       <div>
         <p class="kicker fx">ウイスキー蒸溜所</p>
         <h1 class="d2" id="page-title"><span class="ib">1棟・1区画から、</span><span class="ib">区画ごとの分担まで。</span></h1>
-        <p class="lead fx w2">樽1本ごとの置き場所と、詰めた日・測った値・移し替えを、貯蔵庫の端末と事務所の画面で1つの台帳にします。いまお使いのしくみを置き換えるものではありません。</p>
+        <p class="lead fx w2"><span class="sen"><span class="ib">Particle design株式会社の</span><span class="ib">「CASK / BARREL」は、</span><span class="ib">ウイスキー蒸溜所の</span><span class="ib">貯蔵庫で、</span><span class="ib">樽の置き場所、</span><span class="ib">棚卸しの結果、</span><span class="ib">測った液量と度数を、</span><span class="ib">樽ごとに</span><span class="ib">確かめられる</span><span class="ib">樽の管理サービスです。</span></span><span class="sen"><span class="ib">詰めた日や</span><span class="ib">移し替えも、</span><span class="ib">貯蔵庫の端末と</span><span class="ib">事務所の画面で、</span><span class="ib">同じ台帳に</span><span class="ib">残します。</span><span class="ib">いまお使いの</span><span class="ib">しくみを</span><span class="ib">置き換えるものでは</span><span class="ib">ありません。</span></span></p>
         <div class="actions fx w5">
           <a class="btn" href="https://particle-design.co.jp/contact.html?topic=caskbarrel" data-goal="CTA Hearing Segment">ヒアリングを申し込む</a>
         </div>
@@ -115,25 +115,31 @@
       <p class="label">1棟・1区画から</p>
       <h2 class="d2" id="small-title" data-reveal><span class="ib">棚卸しの日も、</span><span class="ib">樽を探す日も。</span></h2>
       <p class="lede w1" data-reveal>何年も動かさない樽の置き場所が、担当の人の記憶と表計算の一覧にしかない。そんな貯蔵庫でも、移す・数える・測るといういつもの作業のついでに、台帳を重ねていけます。</p>
+      <ol class="thread" data-thread>
+        <li><b><span class="ib">タグで</span><span class="ib">見分ける</span></b><span><span class="ib">樽1本に</span><span class="ib">1枚貼ったタグで、</span><span class="ib">どの樽かを</span><span class="ib">見分けます</span></span></li>
+        <li><b>棚卸し</b><span><span class="ib">通路を歩いて、</span><span class="ib">タグを</span><span class="ib">まとめて読みます</span></span></li>
+        <li><b><span class="ib">読めない樽を</span><span class="ib">確かめる</span></b><span><span class="ib">タグの QR や</span><span class="ib">樽の番号で</span><span class="ib">確かめます</span></span></li>
+        <li><b><span class="ib">測って</span><span class="ib">記録する</span></b><span><span class="ib">液量と度数は</span><span class="ib">人が測り、</span><span class="ib">現場アプリで</span><span class="ib">記録します</span></span></li>
+      </ol>
       <article class="scene" data-reveal>
         <div class="scene-text">
           <h3>棚の前を歩いて、まとめて数える</h3>
           <p>RFIDリーダーを持って通路を歩くと、樽に貼ったタグをまとめて読みます。読めた樽の数がその場で増え、読めていない樽だけが一覧に残ります。</p>
-          <p class="note"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg><span data-copy="rfid-note">読み取れる距離や確実さは、タグと貯蔵庫の置き方で変わります。</span></p>
+          <p class="note"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg><span data-copy="rfid-note"><span class="ib">読み取れる距離や</span><span class="ib">確実さは、</span><span class="ib">タグと貯蔵庫の</span><span class="ib">置き方で</span><span class="ib">変わります。</span></span></p>
         </div>
         <figure class="shot shot-device"><div class="frame"><img src="../assets/screens/s17-stocktake-720.webp" srcset="../assets/screens/s17-stocktake-360.webp 360w, ../assets/screens/s17-stocktake-720.webp 720w" sizes="232px" width="720" height="972" alt="現場アプリの棚卸しの画面。読めた樽の数が、輪の目盛りの中に出ている" loading="lazy" decoding="async"></div><figcaption>読めた樽の数が、その場で増えていきます。</figcaption></figure>
       </article>
       <article class="scene" data-reveal>
         <div class="scene-text">
           <h3>探したい樽へ、近さを頼りに</h3>
-          <p>番号か一覧で樽を選び、RFIDリーダーを向けて歩きます。近づくほど数字が上がり、音が速くなります。</p>
+          <p><span class="ib">一覧に残った樽や</span><span class="ib">探したい樽を、</span><span class="ib">番号か一覧で選び、</span><span class="ib">RFIDリーダーを</span><span class="ib">向けて歩きます。</span><span class="ib">近づくほど</span><span class="ib">数字が上がり、</span><span class="ib">音が速くなります。</span><span class="ib">タグが読みにくい</span><span class="ib">場所の樽は、</span><span class="ib">タグの QR や</span><span class="ib">樽の番号と、</span><span class="ib">置き場所の記録で</span><span class="ib">確かめます。</span></p>
         </div>
         <figure class="shot shot-device near"><div class="frame"><video controls preload="none" playsinline poster="../assets/screens/v1-find-poster.webp" width="720" height="734" aria-label="現場アプリで樽を探す画面の録画。近づくと近さの数字が上がって輪が狭まり、見つかりましたと出る。音はありません"><source src="../assets/screens/v1-find.mp4" type="video/mp4"></video></div><figcaption>近づくほど数字が上がり、音が速くなります。</figcaption></figure>
       </article>
       <article class="scene" data-reveal>
         <div class="scene-text">
           <h3>測った値は、樽の前で一度だけ</h3>
-          <p>液量や度数は、樽の前で現場アプリから入れます。測り方と日時と一緒に、事務所の画面へ届きます。</p>
+          <p><span class="ib">液量や度数は、</span><span class="ib">人が測って、</span><span class="ib">樽の前で</span><span class="ib">現場アプリから</span><span class="ib">入れます。</span><span class="ib">RFID は</span><span class="ib">樽を見分ける</span><span class="ib">ためのもので、</span><span class="ib">中身は</span><span class="ib">測りません。</span><span class="ib">測った値は、</span><span class="ib">測り方と日時と</span><span class="ib">一緒に、</span><span class="ib">事務所の画面へ</span><span class="ib">届きます。</span></p>
         </div>
         <figure class="shot shot-device"><div class="frame"><img src="../assets/screens/s20-cask-720.webp" srcset="../assets/screens/s20-cask-360.webp 360w, ../assets/screens/s20-cask-720.webp 720w" sizes="232px" width="720" height="1295" alt="現場アプリの樽の画面。液量とその根拠が出ていて、下に記録するボタンがある" loading="lazy" decoding="async"></div><figcaption>樽のラベルの QR から開いた画面。樽の前で、その場で記録できます。</figcaption></figure>
       </article>
@@ -223,6 +229,7 @@
         <details><summary>いまの台帳や生産管理のしくみと一緒に使えますか</summary><p class="answer" data-copy="faq-system">置き換えるものではありません。現場の棚卸しと置き場所の照合から始めます。いまお使いの一覧の取り込みや、つなぎ方は、項目を見ながら個別に決めます。</p></details>
         <details><summary>法定の帳簿として使えますか</summary><p class="answer" data-copy="faq-ledger">使えません。記録と照合を助ける道具です。帳簿は、いまのままお使いください。</p></details>
         <details><summary>熟成の状態は分かりますか</summary><p class="answer" data-copy="faq-aging">RFID は樽を見分けるためのもので、熟成の状態は測れません。測った液量や度数を、記録として残します。</p></details>
+        <details><summary>費用はどのくらいですか</summary><p class="answer"><span data-copy="trial-fee"><span class="ib">簡易検証は</span><span class="ib">有償です。</span><span class="ib">費用は、</span><span class="ib">場所と範囲を</span><span class="ib">伺ってから</span><span class="ib">ご案内します。</span></span><span data-copy="fee-waiver"><span class="ib">サービス利用料は、</span><span class="ib">タグと機器を</span><span class="ib">ご購入いただいたうえで、</span><span class="ib">導入から</span><span class="ib">一定の期間は</span><span class="ib">無償です。</span></span><span class="ib">ベータ版で</span><span class="ib">試せることと</span><span class="ib">費用の分け方は、</span><span class="ib"><a href="../early-adopter/#beta">アーリーアダプター募集</a>の</span><span class="ib">ページに</span><span class="ib">まとめています。</span></p></details>
       </div>
     </div>
   </section>
